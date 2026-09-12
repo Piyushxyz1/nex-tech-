@@ -1,0 +1,595 @@
+/* =========================================================
+   OFFERS PAGE
+========================================================= */
+
+.offers-page {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 80px;
+  color: #171923;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.offers-hero {
+  position: relative;
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+
+.offers-hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  top: -180px;
+  right: -100px;
+}
+
+.offers-hero::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  bottom: -160px;
+  left: -80px;
+}
+
+.offers-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  text-align: center;
+}
+
+.offers-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  backdrop-filter: blur(10px);
+}
+
+.offers-hero h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.offers-hero h1 span {
+  background: #4da3ff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.offers-hero p {
+  max-width: 650px;
+  margin: 22px auto 0;
+  color: #cbd5e1;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.offers-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 55px;
+  margin-top: 42px;
+}
+
+.offers-hero-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.offers-hero-stats strong {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.offers-hero-stats span {
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   DEAL BANNER
+========================================================= */
+
+.deal-banner {
+  width: min(1150px, calc(100% - 40px));
+  margin: 50px auto 10px;
+  padding: 28px 34px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff, #f8f7ff);
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.07);
+}
+
+.deal-banner-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: #fff7ed;
+  font-size: 31px;
+}
+
+.deal-banner-content {
+  flex: 1;
+}
+
+.deal-banner-content > span {
+  color: #6366f1;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.deal-banner-content h2 {
+  margin: 5px 0 4px;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.deal-banner-content p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.deal-banner-offer {
+  min-width: 105px;
+  padding: 13px 18px;
+  text-align: center;
+  border-radius: 14px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.deal-banner-offer strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.deal-banner-offer span {
+  color: #cbd5e1;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   OFFERS SECTION
+========================================================= */
+
+.offers-section {
+  width: min(1200px, calc(100% - 40px));
+  margin: 70px auto;
+}
+
+.offers-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.offers-small-title {
+  color: #6366f1;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.offers-heading h2 {
+  margin: 7px 0 5px;
+  font-size: 34px;
+  font-weight: 850;
+  letter-spacing: -0.8px;
+}
+
+.offers-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.offer-count {
+  padding: 10px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PRODUCTS GRID
+========================================================= */
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.offer-product-wrapper {
+  position: relative;
+  min-width: 0;
+}
+
+.offer-discount {
+  position: absolute;
+  z-index: 10;
+  top: 13px;
+  left: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  box-shadow: 0 5px 15px rgba(220, 38, 38, 0.25);
+}
+
+
+/* =========================================================
+   NO OFFERS
+========================================================= */
+
+.no-offers {
+  padding: 80px 25px;
+  text-align: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.no-offers-icon {
+  margin-bottom: 15px;
+  font-size: 45px;
+}
+
+.no-offers h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.no-offers p {
+  margin: 0;
+  color: #64748b;
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.offers-benefits {
+  padding: 85px 20px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.benefits-heading {
+  max-width: 650px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.benefits-heading > span {
+  color: #6366f1;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+}
+
+.benefits-heading h2 {
+  margin: 8px 0;
+  font-size: 34px;
+  font-weight: 850;
+}
+
+.benefits-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.benefits-grid {
+  width: min(1150px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.benefit-card {
+  padding: 28px 22px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-7px);
+  border-color: #c7d2fe;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.benefit-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #f1f5f9;
+  font-size: 27px;
+}
+
+.benefit-card h3 {
+  margin: 0 0 9px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.benefit-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.offers-cta {
+  width: min(1100px, calc(100% - 40px));
+  margin: 70px auto;
+  padding: 50px 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(129, 140, 248, 0.3), transparent 30%),
+    linear-gradient(135deg, #111827, #1e1b4b);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.16);
+}
+
+.offers-cta span {
+  color: #a5b4fc;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+}
+
+.offers-cta h2 {
+  margin: 9px 0;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 850;
+}
+
+.offers-cta p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.cta-icon {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 42px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .offers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .offers-hero {
+    min-height: 390px;
+    padding: 65px 20px;
+  }
+
+  .offers-hero h1 {
+    font-size: 43px;
+    letter-spacing: -1.5px;
+  }
+
+  .offers-hero p {
+    font-size: 14px;
+  }
+
+  .offers-hero-stats {
+    gap: 22px;
+    margin-top: 32px;
+  }
+
+  .offers-hero-stats strong {
+    font-size: 20px;
+  }
+
+  .offers-hero-stats span {
+    font-size: 9px;
+  }
+
+  .deal-banner {
+    width: calc(100% - 30px);
+    margin-top: 30px;
+    padding: 22px;
+    flex-wrap: wrap;
+  }
+
+  .deal-banner-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+
+  .deal-banner-content {
+    min-width: calc(100% - 80px);
+  }
+
+  .deal-banner-content h2 {
+    font-size: 19px;
+  }
+
+  .deal-banner-content p {
+    font-size: 12px;
+  }
+
+  .deal-banner-offer {
+    width: 100%;
+  }
+
+  .offers-section {
+    width: calc(100% - 30px);
+    margin: 50px auto;
+  }
+
+  .offers-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .offers-heading h2 {
+    font-size: 28px;
+  }
+
+  .offers-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-heading h2 {
+    font-size: 28px;
+  }
+
+  .offers-cta {
+    width: calc(100% - 30px);
+    padding: 35px 25px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .offers-cta h2 {
+    font-size: 26px;
+  }
+
+  .cta-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 30px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .offers-hero-stats {
+    gap: 15px;
+  }
+
+  .offers-hero-stats strong {
+    font-size: 17px;
+  }
+
+  .offers-hero-stats span {
+    font-size: 8px;
+  }
+
+  .offers-badge {
+    font-size: 10px;
+    padding: 8px 13px;
+  }
+}

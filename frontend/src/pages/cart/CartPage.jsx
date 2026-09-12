@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import {
   ArrowLeft,
   Minus,
@@ -12,23 +12,16 @@ import {
   CreditCard,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-import {
-  increaseQuantity,
-  decreaseQuantity,
-  removeFromCart,
-  clearCart,
-} from "../../redux/cartSlice";
-
+import useCart from "../../hooks/useCart";
 import "./cartPage.css";
 
 const CartPage = () => {
+
+
+  const  {removeItemFromCart,increaseItemQuantity,decreaseItemQuantity,clearAllCart,cartItems } = useCart()
+
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.items);
-
-  console.log("CART PAGE ITEMS:", cartItems);
 
   // Empty cart
   if (cartItems.length === 0) {
@@ -111,7 +104,7 @@ const CartPage = () => {
 
               <button
                 className="clear-cart-btn"
-                onClick={() => dispatch(clearCart())}
+                onClick={() => clearAllCart()}
               >
                 Clear Cart
               </button>
@@ -154,7 +147,7 @@ const CartPage = () => {
                       <button
                         className="remove-item-btn"
                         onClick={() =>
-                          dispatch(removeFromCart(item.id))
+                          removeItemFromCart(item.id)
                         }
                         aria-label={`Remove ${item.name}`}
                       >
@@ -168,7 +161,7 @@ const CartPage = () => {
                       <div className="quantity-control">
                         <button
                           onClick={() =>
-                            dispatch(decreaseQuantity(item.id))
+                          decreaseItemQuantity(item.id)
                           }
                           aria-label={`Decrease quantity of ${item.name}`}
                         >
@@ -179,7 +172,7 @@ const CartPage = () => {
 
                         <button
                           onClick={() =>
-                            dispatch(increaseQuantity(item.id))
+                            increaseItemQuantity(item.id)
                           }
                           aria-label={`Increase quantity of ${item.name}`}
                         >

@@ -1,8 +1,7 @@
 
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/cartSlice";
+import useCart from "../../hooks/useCart";
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,14 +14,14 @@ import {
   Check,
 } from "lucide-react";
 
-import products from "../../components/navbar/searchItems";
+import products from "../../assets/productStore/searchItems";
 import "./productDetails.css";
 import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
 
   useEffect(() => {
   window.scrollTo({
@@ -40,14 +39,8 @@ const ProductDetails = () => {
   // INVALID PRODUCT
   // ============================
 
-const addItemtoCart=(product)=>{
- toast.success("item added to cart")
-dispatch(addToCart(product))
-navigate("/cart")
+  const {addItemToCart} = useCart();
 
-
-
-}
 
   if (!product) {
     return (
@@ -224,7 +217,7 @@ navigate("/cart")
 
             <button
               className="add-cart-btn"
-              onClick={() => addItemtoCart(product) }
+              onClick={() => addItemToCart(product) }
             >
               <ShoppingCart size={18} />
               Add to Cart

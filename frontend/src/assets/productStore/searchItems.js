@@ -11,6 +11,9 @@ export const products = [
     brand: "Nexora",
 
     price: 89999,
+    originalPrice: 99999,
+    discount: 10,
+    onOffer: true,
     rating: 4.7,
     stock: 18,
 
@@ -64,6 +67,9 @@ export const products = [
     brand: "Nexora",
 
     price: 74999,
+    originalPrice: 84999,
+    discount: 12,
+    onOffer: true,
     rating: 4.5,
     stock: 24,
 
@@ -911,7 +917,9 @@ export const products = [
     category: "Mouse",
     brand: "Nexora",
 
-    price: 5999,
+    originalPrice: 6999,
+    discount: 14,
+    onOffer: true,
     rating: 4.6,
     stock: 41,
 

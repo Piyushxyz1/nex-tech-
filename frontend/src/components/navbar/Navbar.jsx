@@ -1,12 +1,15 @@
-
 import { useState } from "react";
 import "./navbar.css";
-import products from "./searchItems";
+import products from "../../assets/productStore/searchItems";
+import useCart from "../../hooks/useCart";
 
 import {
   Menu,
   X,
   Search,
+  ShoppingCart,
+  UserPlus,
+  LogIn,
 } from "lucide-react";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +18,16 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
 
+  const { cartItems } = useCart();
+
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   const navigate = useNavigate();
+
+  // ================= SEARCH PRODUCTS =================
 
   const filteredProducts = products.filter((product) => {
     const query = search.trim().toLowerCase();
@@ -29,9 +41,30 @@ const Navbar = () => {
     );
   });
 
+  // ================= PRODUCT SEARCH CLICK =================
+
   const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`);
+    navigate(`/products/${productId}`);
     setSearch("");
+    setMenuOpen(false);
+  };
+
+  // ================= CART =================
+
+  const handleCartClick = () => {
+    navigate("/cart");
+    setMenuOpen(false);
+  };
+
+  // ================= AUTH =================
+
+  const handleSignIn = () => {
+    navigate("/signin");
+    setMenuOpen(false);
+  };
+
+  const handleCreateAccount = () => {
+    navigate("/signup");
     setMenuOpen(false);
   };
 
@@ -40,12 +73,15 @@ const Navbar = () => {
       <div className="nav-container">
 
         {/* ================= LOGO ================= */}
+
         <Link to="/" className="nav-logo">
-          NEXORA
+          <strong>NEXORA</strong>
           <span>TECHNOLOGIES</span>
         </Link>
 
+
         {/* ================= DESKTOP LINKS ================= */}
+
         <div className="nav-links">
           <Link to="/products">
             Products
@@ -60,10 +96,13 @@ const Navbar = () => {
           </Link>
         </div>
 
+
         {/* ================= SEARCH ================= */}
+
         <div className="search-wrapper">
 
           <div className="nav-search">
+
             <Search size={17} />
 
             <input
@@ -75,6 +114,7 @@ const Navbar = () => {
 
             {search && (
               <button
+                type="button"
                 className="search-clear"
                 onClick={() => setSearch("")}
                 aria-label="Clear search"
@@ -82,9 +122,12 @@ const Navbar = () => {
                 <X size={15} />
               </button>
             )}
+
           </div>
 
+
           {/* ================= SEARCH RESULTS ================= */}
+
           {search.trim() && (
             <div className="search-results">
 
@@ -93,14 +136,18 @@ const Navbar = () => {
                   <div
                     className="search-result-item"
                     key={product.id}
-                    onClick={() => handleProductClick(product.id)}
+                    onClick={() =>
+                      handleProductClick(product.id)
+                    }
                   >
+
                     <img
                       src={product.image}
                       alt={product.name}
                     />
 
                     <div className="search-product-info">
+
                       <h4>{product.name}</h4>
 
                       <span>
@@ -108,9 +155,14 @@ const Navbar = () => {
                       </span>
 
                       <p>
-                        ₹{product.price.toLocaleString("en-IN")}
+                        ₹
+                        {product.price?.toLocaleString(
+                          "en-IN"
+                        )}
                       </p>
+
                     </div>
+
                   </div>
                 ))
               ) : (
@@ -124,19 +176,66 @@ const Navbar = () => {
 
         </div>
 
+
         {/* ================= ACTIONS ================= */}
+
         <div className="nav-actions">
 
-          {/* CIRCULAR BRAND LOGO */}
+          {/* CREATE ACCOUNT */}
+
           <button
+            type="button"
+            className="nav-signup-btn"
+            onClick={handleCreateAccount}
+          >
+            <UserPlus size={17} />
+            <span>Create Account</span>
+          </button>
+
+
+          {/* SIGN IN */}
+
+          <button
+            type="button"
+            className="nav-signin-btn"
+            onClick={handleSignIn}
+          >
+            <LogIn size={17} />
+            <span>Sign In</span>
+          </button>
+
+
+          {/* CART */}
+
+          <button
+            type="button"
+            className="cart-btn"
+            onClick={handleCartClick}
+            aria-label="Shopping Cart"
+          >
+            <ShoppingCart size={21} />
+
+            <span className="cart-count">
+              {cartCount}
+            </span>
+          </button>
+
+
+          {/* BRAND LOGO */}
+
+          <button
+            type="button"
             className="nav-circle-logo"
             aria-label="Nexora"
           >
+
             <svg
               className="trust-ring"
               viewBox="0 0 100 100"
             >
+
               <defs>
+
                 <path
                   id="trustCirclePath"
                   d="
@@ -146,25 +245,33 @@ const Navbar = () => {
                     a 36,36 0 1,1 -72,0
                   "
                 />
+
               </defs>
 
               <text className="trust-text">
+
                 <textPath
                   href="#trustCirclePath"
                   startOffset="0%"
                 >
                   NEXORA • TECHNOLOGY • INNOVATION •
                 </textPath>
+
               </text>
+
             </svg>
 
             <span className="trust-d">
               N
             </span>
+
           </button>
 
-          {/* MENU BUTTON */}
+
+          {/* MENU */}
+
           <button
+            type="button"
             className="menu-btn"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
@@ -177,13 +284,17 @@ const Navbar = () => {
           </button>
 
         </div>
+
       </div>
 
+
       {/* ================= MOBILE MENU ================= */}
+
       {menuOpen && (
         <div className="mobile-menu">
 
           {/* MOBILE SEARCH */}
+
           <div className="mobile-search">
 
             <Search size={17} />
@@ -192,11 +303,14 @@ const Navbar = () => {
               type="text"
               placeholder="Search laptops, headphones..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
             />
 
             {search && (
               <button
+                type="button"
                 className="search-clear"
                 onClick={() => setSearch("")}
                 aria-label="Clear search"
@@ -207,7 +321,9 @@ const Navbar = () => {
 
           </div>
 
+
           {/* MOBILE LINKS */}
+
           <Link
             to="/products"
             onClick={() => setMenuOpen(false)}
@@ -229,11 +345,55 @@ const Navbar = () => {
             Offers
           </Link>
 
+
+          {/* MOBILE AUTH */}
+
+          <div className="mobile-auth">
+
+            <button
+              type="button"
+              className="mobile-signin"
+              onClick={handleSignIn}
+            >
+              <LogIn size={18} />
+              Sign In
+            </button>
+
+            <button
+              type="button"
+              className="mobile-signup"
+              onClick={handleCreateAccount}
+            >
+              <UserPlus size={18} />
+              Create Account
+            </button>
+
+          </div>
+
+
+          {/* MOBILE CART */}
+
+          <button
+            type="button"
+            className="mobile-cart"
+            onClick={handleCartClick}
+          >
+            <ShoppingCart size={19} />
+            <span>Cart</span>
+
+            {cartCount > 0 && (
+              <span className="mobile-cart-count">
+                {cartCount}
+              </span>
+            )}
+
+          </button>
+
         </div>
       )}
+
     </nav>
   );
 };
 
 export default Navbar;
-

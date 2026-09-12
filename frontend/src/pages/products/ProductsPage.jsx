@@ -1,25 +1,39 @@
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+
 import {
   ArrowRight,
-  Star,
-  ShoppingCart,
   Zap,
 } from "lucide-react";
 
-import products from "../../components/navbar/searchItems";
+import products from "../../assets/productStore/searchItems";
 import "./productPage.css";
+import ProductCard from "../../components/productCard/ProductCard";
 
 const ProductPage = () => {
-  const navigate = useNavigate();
 
-  const handleProductClick = (id) => {
-    navigate(`/products/${id}`);
-  };
+
+  // Selected category
+  const [selectedCategory, setSelectedCategory] = useState("All Products");
+
+
+  // Get unique categories
+  const categories = [
+    "All Products",
+    ...new Set(products.map((product) => product.category)),
+  ];
+
+  // Filter products according to clicked category
+  const filteredProducts =
+    selectedCategory === "All Products"
+      ? products
+      : products.filter(
+          (product) => product.category === selectedCategory
+        );
 
   return (
     <section className="product-page" id="products">
+
       {/* HEADER */}
       <div className="product-page-header">
         <div>
@@ -40,119 +54,84 @@ const ProductPage = () => {
         </div>
 
         <div className="product-count">
-          <strong>{products.length}</strong>
+          <strong>{filteredProducts.length}</strong>
           <span>Products</span>
         </div>
       </div>
 
-      {/* CATEGORY FILTER STYLE */}
+      {/* CATEGORY FILTER */}
       <div className="product-categories">
-        <button className="category-active">
-          All Products
-        </button>
-
-        {[...new Set(products.map((product) => product.category))].map(
-          (category) => (
-            <button key={category}>
-              {category}
-            </button>
-          )
-        )}
+        {categories.map((category) => (
+          <button
+            key={category}
+            className={
+              selectedCategory === category
+                ? "category-active"
+                : ""
+            }
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
       </div>
 
       {/* PRODUCT GRID */}
       <div className="product-grid">
-        {products.map((product) => (
-          <article
-            className="product-card"
-            key={product.id}
-            onClick={() => handleProductClick(product.id)}
-          >
-            {/* IMAGE */}
-            <div className="product-image-wrapper">
-              <div className="product-badge">
-                NEXORA
-              </div>
 
-              <img
-                src={product.image}
-                alt={product.name}
-                className="product-image"
-              />
-
-              <div className="product-hover">
-                <span>View Product</span>
-                <ArrowRight size={16} />
-              </div>
-            </div>
-
-            {/* CONTENT */}
-            <div className="product-card-content">
-              <div className="product-meta">
-                <span>{product.category}</span>
-
-                <div className="product-rating">
-                  <Star size={13} fill="currentColor" />
-                  {product.rating}
-                </div>
-              </div>
-
-              <h2>{product.name}</h2>
-
-              <p className="product-brand">
-                {product.brand} Technology
-              </p>
-
-              <div className="product-card-bottom">
-                <div className="product-price">
-                  <span>Starting from</span>
-                  <strong>
-                    ₹{product.price.toLocaleString("en-IN")}
-                  </strong>
-                </div>
-
-                <button
-                  className="product-arrow"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleProductClick(product.id);
-                  }}
-                  aria-label={`View ${product.name}`}
-                >
-                  <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          </article>
+        {filteredProducts.map((product,index) => (
+          <ProductCard key={index} product = {product}/>
         ))}
+
       </div>
+
+      {/* NO PRODUCTS MESSAGE */}
+      {filteredProducts.length === 0 && (
+        <div className="no-products">
+          <h3>No products found</h3>
+          <p>
+            There are currently no products in this category.
+          </p>
+        </div>
+      )}
 
       {/* BOTTOM CTA */}
       <div className="products-bottom">
+
         <div>
+
           <span className="products-bottom-icon">
             <Zap size={18} />
           </span>
 
           <div>
-            <h3>Built for what's next.</h3>
+            <h3>
+              Built for what's next.
+            </h3>
+
             <p>
-              Performance, innovation and reliability in one ecosystem.
+              Performance, innovation and reliability
+              in one ecosystem.
             </p>
           </div>
+
         </div>
 
         <button
           onClick={() =>
             document
               .getElementById("products")
-              ?.scrollIntoView({ behavior: "smooth" })
+              ?.scrollIntoView({
+                behavior: "smooth",
+              })
           }
         >
           Explore Collection
           <ArrowRight size={17} />
         </button>
+
       </div>
+
     </section>
   );
 };

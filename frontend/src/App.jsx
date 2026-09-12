@@ -6,9 +6,11 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import ProductPage from "./pages/products/ProductsPage";
 import ProductDetails from "./pages/productDetails/ProductDetails";
-import CartPage from "./pages/cart/cartPage";
-import { Import } from "lucide-react";
+import CartPage from "./pages/cart/CartPage";
+import Footer from "./components/footer/Footer"
   import { ToastContainer, toast } from 'react-toastify';
+import AccessoriesPage from "./pages/cart/accesoriespage/AccessoriesPage";
+import Offers from "./pages/offerspage/Offers";
 
 
 const App = () => {
@@ -38,7 +40,12 @@ const App = () => {
           <Route 
            path="/cart"
            element = {<CartPage/>}/>
+          <Route 
+           path="/accessories"
+           element = {<AccessoriesPage/>}/>
+           <Route path="/offers" element = {<Offers/>} />
         </Routes>
+        <Footer/>
       </div>
    
   );
