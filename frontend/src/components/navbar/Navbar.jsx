@@ -14,7 +14,7 @@ import {
 
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({loggedIn,setLoggedIn}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -59,7 +59,7 @@ const Navbar = () => {
   // ================= AUTH =================
 
   const handleSignIn = () => {
-    navigate("/signin");
+    navigate("/login");
     setMenuOpen(false);
   };
 
@@ -67,6 +67,12 @@ const Navbar = () => {
     navigate("/signup");
     setMenuOpen(false);
   };
+
+ const  handleSignOut = ()=>{
+   setLoggedIn(!loggedIn)
+  navigate('/')
+
+ }
 
   return (
     <nav className="navbar">
@@ -181,28 +187,37 @@ const Navbar = () => {
 
         <div className="nav-actions">
 
-          {/* CREATE ACCOUNT */}
+    {loggedIn ? (
+  <button
+    type="button"
+    className="nav-signin-btn"
+    onClick={handleSignOut}
+  >
+    <LogIn size={17} />
+    <span>Sign Out</span>
+  </button>
+) : (
+  <>
+    <button
+      type="button"
+      className="nav-signin-btn"
+      onClick={handleSignIn}
+    >
+      <LogIn size={17} />
+      <span>Sign In</span>
+    </button>
 
-          <button
-            type="button"
-            className="nav-signup-btn"
-            onClick={handleCreateAccount}
-          >
-            <UserPlus size={17} />
-            <span>Create Account</span>
-          </button>
-
-
-          {/* SIGN IN */}
-
-          <button
-            type="button"
-            className="nav-signin-btn"
-            onClick={handleSignIn}
-          >
-            <LogIn size={17} />
-            <span>Sign In</span>
-          </button>
+    <button
+      type="button"
+      className="nav-signup-btn"
+      onClick={handleCreateAccount}
+    >
+      <UserPlus size={17} />
+      <span>Create Account</span>
+    </button>
+  </>
+)}
+          
 
 
           {/* CART */}
