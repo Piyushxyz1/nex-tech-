@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import "./navbar.css";
+
 import products from "../../assets/productStore/searchItems";
 import useCart from "../../hooks/useCart";
 
@@ -10,13 +12,28 @@ import {
   ShoppingCart,
   UserPlus,
   LogIn,
+  LogOut,
 } from "lucide-react";
 
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-const Navbar = ({loggedIn,setLoggedIn}) => {
+import { logout } from "../../redux/authSlice";
+
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // ================= AUTH =================
+
+  const { isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+
+  // ================= CART =================
 
   const { cartItems } = useCart();
 
@@ -24,8 +41,6 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
     (total, item) => total + item.quantity,
     0
   );
-
-  const navigate = useNavigate();
 
   // ================= SEARCH PRODUCTS =================
 
@@ -45,6 +60,7 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 
   const handleProductClick = (productId) => {
     navigate(`/products/${productId}`);
+
     setSearch("");
     setMenuOpen(false);
   };
@@ -68,11 +84,14 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
     setMenuOpen(false);
   };
 
- const  handleSignOut = ()=>{
-   setLoggedIn(!loggedIn)
-  navigate('/')
+  const handleSignOut = () => {
+    dispatch(logout());
 
- }
+    setMenuOpen(false);
+    setSearch("");
+
+    navigate("/");
+  };
 
   return (
     <nav className="navbar">
@@ -84,7 +103,6 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
           <strong>NEXORA</strong>
           <span>TECHNOLOGIES</span>
         </Link>
-
 
         {/* ================= DESKTOP LINKS ================= */}
 
@@ -101,7 +119,6 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
             Offers
           </Link>
         </div>
-
 
         {/* ================= SEARCH ================= */}
 
@@ -131,14 +148,15 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 
           </div>
 
-
           {/* ================= SEARCH RESULTS ================= */}
 
           {search.trim() && (
             <div className="search-results">
 
               {filteredProducts.length > 0 ? (
+
                 filteredProducts.map((product) => (
+
                   <div
                     className="search-result-item"
                     key={product.id}
@@ -170,11 +188,15 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
                     </div>
 
                   </div>
+
                 ))
+
               ) : (
+
                 <div className="no-results">
                   No products found
                 </div>
+
               )}
 
             </div>
@@ -182,45 +204,57 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 
         </div>
 
-
         {/* ================= ACTIONS ================= */}
 
         <div className="nav-actions">
 
-    {loggedIn ? (
-  <button
-    type="button"
-    className="nav-signin-btn"
-    onClick={handleSignOut}
-  >
-    <LogIn size={17} />
-    <span>Sign Out</span>
-  </button>
-) : (
-  <>
-    <button
-      type="button"
-      className="nav-signin-btn"
-      onClick={handleSignIn}
-    >
-      <LogIn size={17} />
-      <span>Sign In</span>
-    </button>
+          {/* AUTH */}
 
-    <button
-      type="button"
-      className="nav-signup-btn"
-      onClick={handleCreateAccount}
-    >
-      <UserPlus size={17} />
-      <span>Create Account</span>
-    </button>
-  </>
-)}
-          
+          {isAuthenticated ? (
 
+            <button
+              type="button"
+              className="nav-signin-btn"
+              onClick={handleSignOut}
+            >
+              <LogOut size={17} />
 
-          {/* CART */}
+              <span>
+                Sign Out
+              </span>
+            </button>
+
+          ) : (
+
+            <>
+              <button
+                type="button"
+                className="nav-signin-btn"
+                onClick={handleSignIn}
+              >
+                <LogIn size={17} />
+
+                <span>
+                  Sign In
+                </span>
+              </button>
+
+              <button
+                type="button"
+                className="nav-signup-btn"
+                onClick={handleCreateAccount}
+              >
+                <UserPlus size={17} />
+
+                <span>
+                  Create Account
+                </span>
+              </button>
+            </>
+
+          )}
+
+          {/* ================= CART ================= */}
 
           <button
             type="button"
@@ -235,8 +269,7 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
             </span>
           </button>
 
-
-          {/* BRAND LOGO */}
+          {/* ================= BRAND LOGO ================= */}
 
           <button
             type="button"
@@ -282,8 +315,7 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 
           </button>
 
-
-          {/* MENU */}
+          {/* ================= MENU ================= */}
 
           <button
             type="button"
@@ -291,21 +323,23 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
+
             {menuOpen ? (
               <X size={22} />
             ) : (
               <Menu size={22} />
             )}
+
           </button>
 
         </div>
 
       </div>
 
-
       {/* ================= MOBILE MENU ================= */}
 
       {menuOpen && (
+
         <div className="mobile-menu">
 
           {/* MOBILE SEARCH */}
@@ -336,7 +370,6 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 
           </div>
 
-
           {/* MOBILE LINKS */}
 
           <Link
@@ -360,31 +393,46 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
             Offers
           </Link>
 
-
           {/* MOBILE AUTH */}
 
           <div className="mobile-auth">
 
-            <button
-              type="button"
-              className="mobile-signin"
-              onClick={handleSignIn}
-            >
-              <LogIn size={18} />
-              Sign In
-            </button>
+            {isAuthenticated ? (
 
-            <button
-              type="button"
-              className="mobile-signup"
-              onClick={handleCreateAccount}
-            >
-              <UserPlus size={18} />
-              Create Account
-            </button>
+              <button
+                type="button"
+                className="mobile-signin"
+                onClick={handleSignOut}
+              >
+                <LogOut size={18} />
+                Sign Out
+              </button>
+
+            ) : (
+
+              <>
+                <button
+                  type="button"
+                  className="mobile-signin"
+                  onClick={handleSignIn}
+                >
+                  <LogIn size={18} />
+                  Sign In
+                </button>
+
+                <button
+                  type="button"
+                  className="mobile-signup"
+                  onClick={handleCreateAccount}
+                >
+                  <UserPlus size={18} />
+                  Create Account
+                </button>
+              </>
+
+            )}
 
           </div>
-
 
           {/* MOBILE CART */}
 
@@ -394,7 +442,10 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
             onClick={handleCartClick}
           >
             <ShoppingCart size={19} />
-            <span>Cart</span>
+
+            <span>
+              Cart
+            </span>
 
             {cartCount > 0 && (
               <span className="mobile-cart-count">
@@ -405,6 +456,7 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
           </button>
 
         </div>
+
       )}
 
     </nav>
@@ -412,3 +464,4 @@ const Navbar = ({loggedIn,setLoggedIn}) => {
 };
 
 export default Navbar;
+

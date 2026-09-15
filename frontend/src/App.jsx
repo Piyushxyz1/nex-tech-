@@ -14,50 +14,86 @@ import Offers from "./pages/offerspage/Offers";
 import Welcome from "./pages/welcomepage/Welcome";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/SignUp";
+import ProtectedRoute from "./routes/ProtectedRoutes";
 
 
 const App = () => {
-
-  const [loggedIn,setLoggedIn] = useState(false)
   return (
-      <div>
-        <ToastContainer/>
-        {/* Common Navbar */}
-        <Navbar  setLoggedIn={setLoggedIn} loggedIn= {loggedIn}/>
+<>
+    <Navbar  />
+    <Routes>
 
-        {/* Routes */}
-        <Routes>
-          {/* Home Page */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={< Welcome />} />
+      {/* =========================
+          PUBLIC ROUTES
+      ========================== */}
 
+      <Route
+        path="/"
+        element={<Welcome />}
+      />
 
-          {/* All Products Page */}
-          <Route
-            path="/products"
-            element={<ProductPage />}
-          />
+      <Route
+        path="/home"
+        element={<Home />}
+      />
 
-          {/* Dynamic Product Details */}
-          <Route
-            path="/products/:id"
-            element={<ProductDetails />}
-          />
+      <Route
+        path="/products"
+        element={<ProductPage />}
+      />
 
-          <Route 
-           path="/cart"
-           element = {<CartPage/>}/>
-          <Route 
-           path="/accessories"
-           element = {<AccessoriesPage/>}/>
-           <Route path="/offers" element = {<Offers/>} />
-           <Route path="/login" element = {<Login setLoggedIn= {setLoggedIn} loggedIn = {loggedIn} />  }/>
-           <Route path="/signup" element = {<Signup/>} />
-        </Routes>
-        <Footer/>
-      </div>
-   
+      <Route
+        path="/products/:id"
+        element={<ProductDetails />}
+      />
+
+      <Route
+        path="/offers"
+        element={<Offers />}
+      />
+
+      {/* =========================
+          AUTH ROUTES
+      ========================== */}
+
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/signup"
+        element={<Signup />}
+      />
+
+      {/* =========================
+          PROTECTED ROUTES
+      ========================== */}
+
+      <Route
+        path="/cart"
+        element={
+          <ProtectedRoute>
+            <CartPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/accessories"
+        element={
+          <ProtectedRoute>
+            <AccessoriesPage />
+          </ProtectedRoute>
+        }
+      />
+
+    </Routes>
+      <Footer/>
+      </>
+
   );
 };
 
-export default App
+export default App;
+

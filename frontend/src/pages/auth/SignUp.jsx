@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Eye,
-  EyeOff,
-  UserPlus,
-} from "lucide-react";
+import { Eye, EyeOff, UserPlus } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./auth.css";
+import { API_URL } from "../../config/api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -20,8 +17,7 @@ const Signup = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -35,12 +31,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const {
-      name,
-      email,
-      password,
-      confirmPassword,
-    } = formData;
+    const { name, email, password, confirmPassword } = formData;
 
     if (!name || !email || !password || !confirmPassword) {
       toast.error("Please fill all fields");
@@ -53,25 +44,25 @@ const Signup = () => {
     }
 
     if (password.length < 6) {
-      toast.error(
-        "Password must be at least 6 characters"
-      );
+      toast.error("Password must be at least 6 characters");
       return;
     }
 
     try {
-      setLoading(true)
+      setLoading(true);
 
-      toast.success(
-          "Account created successfully!"
-      );
+      const response = await axios.post(`${API_URL}/api/signup`, {
+        name,
+        email,
+        password
+      });
 
-      navigate("/login");
-
+      if (response.data.success) {
+        toast.success("Account created successfully!");
+        navigate("/login");
+      }
     } catch (error) {
-      toast.error(
-          "Unable to create account"
-      );
+       error.response?.data?.message || "Unable to create account"
     } finally {
       setLoading(false);
     }
@@ -79,21 +70,16 @@ const Signup = () => {
 
   return (
     <div className="auth-page">
-
       {/* ================= LEFT SHOWCASE ================= */}
 
       <section className="auth-showcase">
-
         <div className="auth-showcase-content">
-
           <Link to="/" className="auth-logo">
             <strong>NEXORA</strong>
             <span>TECHNOLOGIES</span>
           </Link>
 
-          <div className="auth-badge">
-            ✦ JOIN THE FUTURE
-          </div>
+          <div className="auth-badge">✦ JOIN THE FUTURE</div>
 
           <h1>
             Your world.
@@ -102,37 +88,29 @@ const Signup = () => {
           </h1>
 
           <p>
-            Create your NEXORA account and unlock a smarter
-            way to discover, explore and shop technology.
+            Create your NEXORA account and unlock a smarter way to discover,
+            explore and shop technology.
           </p>
 
           <div className="auth-tech-visual">
-
             <img
               src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1200&q=85"
               alt="Premium technology"
             />
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* ================= SIGNUP FORM ================= */}
 
       <section className="auth-form-section">
-
         <div className="auth-form-container">
-
           <Link to="/" className="mobile-auth-logo">
             <strong>NEXORA</strong>
             <span>TECHNOLOGIES</span>
           </Link>
 
           <div className="auth-heading">
-
             <span>GET STARTED</span>
 
             <h2>
@@ -141,20 +119,11 @@ const Signup = () => {
               <em>account.</em>
             </h2>
 
-            <p>
-              Join NEXORA and experience technology differently.
-            </p>
-
+            <p>Join NEXORA and experience technology differently.</p>
           </div>
 
-
-          <form
-            onSubmit={handleSubmit}
-            className="auth-form"
-          >
-
+          <form onSubmit={handleSubmit} className="auth-form">
             <div className="auth-field">
-
               <label>Full Name</label>
 
               <input
@@ -165,12 +134,9 @@ const Signup = () => {
                 onChange={handleChange}
                 autoComplete="name"
               />
-
             </div>
 
-
             <div className="auth-field">
-
               <label>Email Address</label>
 
               <input
@@ -181,22 +147,14 @@ const Signup = () => {
                 onChange={handleChange}
                 autoComplete="email"
               />
-
             </div>
 
-
             <div className="auth-field">
-
               <label>Password</label>
 
               <div className="password-input">
-
                 <input
-                  type={
-                    showPassword
-                      ? "text"
-                      : "password"
-                  }
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Create a password"
                   value={formData.password}
@@ -206,34 +164,19 @@ const Signup = () => {
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowPassword(!showPassword)
-                  }
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? (
-                    <EyeOff size={18} />
-                  ) : (
-                    <Eye size={18} />
-                  )}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
-
               </div>
-
             </div>
 
-
             <div className="auth-field">
-
               <label>Confirm Password</label>
 
               <div className="password-input">
-
                 <input
-                  type={
-                    showConfirmPassword
-                      ? "text"
-                      : "password"
-                  }
+                  type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
@@ -243,11 +186,7 @@ const Signup = () => {
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowConfirmPassword(
-                      !showConfirmPassword
-                    )
-                  }
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {showConfirmPassword ? (
                     <EyeOff size={18} />
@@ -255,29 +194,16 @@ const Signup = () => {
                     <Eye size={18} />
                   )}
                 </button>
-
               </div>
-
             </div>
 
-
             <label className="terms-check">
-
               <input type="checkbox" required />
 
-              <span>
-                I agree to the terms and conditions
-              </span>
-
+              <span>I agree to the terms and conditions</span>
             </label>
 
-
-            <button
-              type="submit"
-              className="auth-submit"
-              disabled={loading}
-            >
-
+            <button type="submit" className="auth-submit" disabled={loading}>
               {loading ? (
                 "Creating account..."
               ) : (
@@ -286,26 +212,16 @@ const Signup = () => {
                   <UserPlus size={18} />
                 </>
               )}
-
             </button>
-
           </form>
 
-
           <div className="auth-switch">
-
             <span>Already have an account?</span>
 
-            <Link to="/login">
-              Sign in
-            </Link>
-
+            <Link to="/login">Sign in</Link>
           </div>
-
         </div>
-
       </section>
-
     </div>
   );
 };
