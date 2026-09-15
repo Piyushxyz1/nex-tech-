@@ -41,6 +41,8 @@ const App = () => {
         />
 
         <Route path="/products" element={<ProductPage />} />
+        
+        <Route path="/accessories" element={<AccessoriesPage />}/>
 
         <Route path="/products/:id" element={<ProductDetails />} />
 
@@ -67,14 +69,6 @@ const App = () => {
           }
         />
 
-        <Route
-          path="/accessories"
-          element={
-            <ProtectedRoute>
-              <AccessoriesPage />
-            </ProtectedRoute>
-          }
-        />
         <Route
           path="/checkout"
           element={
