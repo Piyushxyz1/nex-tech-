@@ -1,27 +1,19 @@
-
 import React from "react";
-import {useSelector } from "react-redux";
-import {
-  ArrowLeft,
-  Minus,
-  Plus,
-  ShoppingCart,
-  Trash2,
-  ShieldCheck,
-  Truck,
-  CreditCard,
-} from "lucide-react";
+import { ArrowLeft, Minus, Plus, ShoppingCart, Trash2, ShieldCheck, Truck, CreditCard } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import "./cartPage.css";
 
 const CartPage = () => {
-
-
-  const  {removeItemFromCart,increaseItemQuantity,decreaseItemQuantity,clearAllCart,cartItems } = useCart()
+  const {
+    removeItemFromCart,
+    increaseItemQuantity,
+    decreaseItemQuantity,
+    clearAllCart,
+    cartItems,
+  } = useCart();
 
   const navigate = useNavigate();
-
 
   // Empty cart
   if (cartItems.length === 0) {
@@ -54,7 +46,9 @@ const CartPage = () => {
   }
 
   const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total +
+      Number(item.price || 0) * Number(item.quantity || 1),
     0
   );
 
@@ -63,7 +57,7 @@ const CartPage = () => {
   const total = subtotal + shipping;
 
   const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
+    (total, item) => total + Number(item.quantity || 1),
     0
   );
 
@@ -81,7 +75,8 @@ const CartPage = () => {
             </h1>
 
             <p>
-              {totalItems} {totalItems === 1 ? "item" : "items"} in your cart
+              {totalItems}{" "}
+              {totalItems === 1 ? "item" : "items"} in your cart
             </p>
           </div>
 
@@ -99,25 +94,32 @@ const CartPage = () => {
 
           {/* Left */}
           <div className="cart-items-section">
+
             <div className="cart-items-header">
               <h2>Cart Items</h2>
 
               <button
                 className="clear-cart-btn"
-                onClick={() => clearAllCart()}
+                onClick={clearAllCart}
               >
                 Clear Cart
               </button>
             </div>
 
             <div className="cart-items">
+
               {cartItems.map((item) => (
-                <article className="cart-item" key={item.id}>
+                <article
+                  className="cart-item"
+                  key={item.productId}
+                >
 
                   {/* Image */}
                   <div
                     className="cart-item-image"
-                    onClick={() => navigate(`/products/${item.id}`)}
+                    onClick={() =>
+                      navigate(`/products/${item.productId}`)
+                    }
                   >
                     <img
                       src={item.image}
@@ -127,7 +129,9 @@ const CartPage = () => {
 
                   {/* Details */}
                   <div className="cart-item-details">
+
                     <div className="cart-item-top">
+
                       <div>
                         <span className="cart-item-category">
                           {item.category}
@@ -135,33 +139,41 @@ const CartPage = () => {
 
                         <h3
                           onClick={() =>
-                            navigate(`/products/${item.id}`)
+                            navigate(
+                              `/products/${item.productId}`
+                            )
                           }
                         >
                           {item.name}
                         </h3>
 
-                        <p>{item.brand} Technology</p>
+                        <p>
+                          {item.brand} Technology
+                        </p>
                       </div>
 
                       <button
                         className="remove-item-btn"
                         onClick={() =>
-                          removeItemFromCart(item.id)
+                          removeItemFromCart(item.productId)
                         }
                         aria-label={`Remove ${item.name}`}
                       >
                         <Trash2 size={18} />
                       </button>
+
                     </div>
 
                     <div className="cart-item-bottom">
 
                       {/* Quantity */}
                       <div className="quantity-control">
+
                         <button
                           onClick={() =>
-                          decreaseItemQuantity(item.id)
+                            decreaseItemQuantity(
+                              item.productId
+                            )
                           }
                           aria-label={`Decrease quantity of ${item.name}`}
                         >
@@ -172,43 +184,56 @@ const CartPage = () => {
 
                         <button
                           onClick={() =>
-                            increaseItemQuantity(item.id)
+                            increaseItemQuantity(
+                              item.productId
+                            )
                           }
                           aria-label={`Increase quantity of ${item.name}`}
                         >
                           <Plus size={15} />
                         </button>
+
                       </div>
 
                       {/* Price */}
                       <div className="cart-item-price">
+
                         <span>
-                          ₹{item.price.toLocaleString("en-IN")} each
+                          ₹
+                          {Number(
+                            item.price || 0
+                          ).toLocaleString("en-IN")}{" "}
+                          each
                         </span>
 
                         <strong>
                           ₹
                           {(
-                            item.price * item.quantity
+                            Number(item.price || 0) *
+                            Number(item.quantity || 1)
                           ).toLocaleString("en-IN")}
                         </strong>
+
                       </div>
 
                     </div>
                   </div>
                 </article>
               ))}
+
             </div>
           </div>
 
           {/* Right */}
           <aside className="order-summary">
+
             <div className="summary-header">
               <span>ORDER SUMMARY</span>
               <h2>Checkout</h2>
             </div>
 
             <div className="summary-rows">
+
               <div>
                 <span>Subtotal</span>
 
@@ -226,6 +251,7 @@ const CartPage = () => {
                     : `₹${shipping.toLocaleString("en-IN")}`}
                 </strong>
               </div>
+
             </div>
 
             {shipping === 0 && (
@@ -235,11 +261,13 @@ const CartPage = () => {
             )}
 
             <div className="summary-total">
+
               <span>Total</span>
 
               <strong>
                 ₹{total.toLocaleString("en-IN")}
               </strong>
+
             </div>
 
             <button
@@ -251,24 +279,35 @@ const CartPage = () => {
             </button>
 
             <div className="cart-trust">
+
               <div className="cart-trust-item">
+
                 <ShieldCheck size={19} />
 
                 <div>
                   <strong>Secure Checkout</strong>
-                  <span>Your payment is protected</span>
+                  <span>
+                    Your payment is protected
+                  </span>
                 </div>
+
               </div>
 
               <div className="cart-trust-item">
+
                 <Truck size={19} />
 
                 <div>
                   <strong>Fast Delivery</strong>
-                  <span>Reliable doorstep delivery</span>
+                  <span>
+                    Reliable doorstep delivery
+                  </span>
                 </div>
+
               </div>
+
             </div>
+
           </aside>
 
         </div>

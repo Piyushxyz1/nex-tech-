@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/authSlice";
+import { API_URL } from "../../config/api";
 
 
 import "./auth.css";
 
 const Login = ({setLoggedIn,loggedIn}) => {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -36,32 +40,24 @@ const Login = ({setLoggedIn,loggedIn}) => {
     try {
       setLoading(true);
 
-    //   const response = await axios.post(
-    //     `${API_URL}/api/login`,
-    //     formData
-    //   );
+      const response = await axios.post(
+        `${API_URL}/api/login`,
+        formData
+      );
 
-      /*
-        Adjust these keys according to your backend response.
-        Example:
-        {
-          token: "...",
-          user: {...}
-        }
-      */
+      const { token } = response.data;
 
-    //   const { token, user } = response.data;
-
-    //   localStorage.setItem("token", token);
-    //   localStorage.setItem("user", JSON.stringify(user));
+      // Redux login reducer:
+      // token Redux state me set hoga
+      // aur localStorage me bhi save hoga
+      dispatch(login(token));
 
       toast.success("Login successful!");
 
-      setLoggedIn(!loggedIn)
       navigate("/home");
     } catch (error) {
       toast.error(
-      "Invalid email or password"
+        error.response?.data?.message || "Invalid email or password"
       );
     } finally {
       setLoading(false);
@@ -183,7 +179,7 @@ const Login = ({setLoggedIn,loggedIn}) => {
                 />
 
                 <button
-                  type="button"
+                  type="submit"
                   onClick={() =>
                     setShowPassword(!showPassword)
                   }

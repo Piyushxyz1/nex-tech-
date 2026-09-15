@@ -1,4 +1,3 @@
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
@@ -37,7 +36,7 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword,
     });
-
+    user.save();
     return res.status(201).json({
       success: true,
       message: "Account created successfully",
@@ -56,7 +55,6 @@ export const signup = async (req, res) => {
     });
   }
 };
-
 
 // =========================
 // LOGIN
@@ -84,10 +82,7 @@ export const login = async (req, res) => {
     }
 
     // Compare password
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
       return res.status(401).json({
@@ -104,7 +99,7 @@ export const login = async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "7d",
-      }
+      },
     );
 
     return res.status(200).json({
@@ -121,4 +116,3 @@ export const login = async (req, res) => {
     });
   }
 };
-

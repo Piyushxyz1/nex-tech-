@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const orderItemSchema = new mongoose.Schema(
   {
     productId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
     },
 
@@ -92,37 +92,7 @@ const orderSchema = new mongoose.Schema(
       default: null,
     },
 
-    shippingAddress: {
-      name: {
-        type: String,
-        required: true,
-      },
-
-      phone: {
-        type: String,
-        required: true,
-      },
-
-      address: {
-        type: String,
-        required: true,
-      },
-
-      city: {
-        type: String,
-        required: true,
-      },
-
-      state: {
-        type: String,
-        required: true,
-      },
-
-      pincode: {
-        type: String,
-        required: true,
-      },
-    },
+  
   },
   {
     timestamps: true,
