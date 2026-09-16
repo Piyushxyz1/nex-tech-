@@ -10,7 +10,7 @@ export const products = [
     category: "Laptop",
     brand: "Nexora",
 
-    price: 89999,
+    price: 69999,
     originalPrice: 99999,
     discount: 10,
     onOffer: true,
@@ -66,7 +66,7 @@ export const products = [
     category: "Laptop",
     brand: "Nexora",
 
-    price: 74999,
+    price: 50999,
     originalPrice: 84999,
     discount: 12,
     onOffer: true,
@@ -173,7 +173,7 @@ export const products = [
     category: "Laptop",
     brand: "Nexora",
 
-    price: 124999,
+    price: 59499,
     rating: 4.9,
     stock: 8,
 
@@ -282,7 +282,7 @@ export const products = [
     category: "Desktop",
     brand: "Nexora",
 
-    price: 109999,
+    price: 70000,
     rating: 4.6,
     stock: 14,
 
@@ -334,7 +334,7 @@ export const products = [
     category: "Desktop",
     brand: "Nexora",
 
-    price: 139999,
+    price: 49999,
     rating: 4.8,
     stock: 7,
 

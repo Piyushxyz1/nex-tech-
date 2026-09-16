@@ -85,14 +85,8 @@ const OrderSuccess = () => {
           </div>
         </div>
 
-        {/* What's Next */}
-        <div className="next-card">
-          <div className="next-icon">
-            <Package size={20} />
-          </div>
-
-         
-        </div>
+      
+       
 
         {/* Buttons */}
         <div className="success-actions">
@@ -107,7 +101,7 @@ const OrderSuccess = () => {
 
           <button
             className="secondary-btn"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/products")}
           >
             <ShoppingBag size={18} />
             Continue Shopping

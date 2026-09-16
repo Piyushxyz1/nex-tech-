@@ -241,10 +241,7 @@ const Footer = () => {
 
         </div>
 
-        <button className="newsletter-btn">
-          Sign Up
-          <span>→</span>
-        </button>
+        
 
       </div>
 
