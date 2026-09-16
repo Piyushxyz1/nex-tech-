@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
@@ -20,6 +20,7 @@ import Orders from "./pages/orderstatus/Orders";
 import useCart from "./hooks/useCart";
 
 const App = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useCart();
   return (
@@ -30,7 +31,10 @@ const App = () => {
           PUBLIC ROUTES
       ========================== */}
 
-        <Route path="/" element={<Welcome />} />
+        <Route
+          path="/"
+          element={isAuthenticated ? <Navigate to="/home" /> : <Welcome />}
+        />
         <Route
           path="/home"
           element={
@@ -41,8 +45,8 @@ const App = () => {
         />
 
         <Route path="/products" element={<ProductPage />} />
-        
-        <Route path="/accessories" element={<AccessoriesPage />}/>
+
+        <Route path="/accessories" element={<AccessoriesPage />} />
 
         <Route path="/products/:id" element={<ProductDetails />} />
 
@@ -89,11 +93,10 @@ const App = () => {
           path="/orders"
           element={
             <ProtectedRoute>
-              <Orders/>
+              <Orders />
             </ProtectedRoute>
           }
         />
-
       </Routes>
       <Footer />
     </>
