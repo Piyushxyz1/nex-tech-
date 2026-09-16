@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import ProductPage from "./pages/products/ProductsPage";
