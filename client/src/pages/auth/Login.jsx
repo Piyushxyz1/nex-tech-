@@ -10,7 +10,7 @@ import { API_URL } from "../../config/api";
 
 import "./auth.css";
 
-const Login = ({setLoggedIn,loggedIn}) => {
+const Login = () => {
    const navigate = useNavigate();
   const dispatch = useDispatch();
 
