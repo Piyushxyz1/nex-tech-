@@ -32,7 +32,7 @@ const IntroSection = () => {
         }}
       >
         <span className="small-heading">
-          DELL TECHNOLOGIES
+          nexora TECHNOLOGIES
         </span>
 
         <h2>

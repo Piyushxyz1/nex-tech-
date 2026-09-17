@@ -38,7 +38,7 @@ const Alienware = () => {
 
             <img
               src={slide5}
-              alt="Dell Alienware Laptop"
+              alt="nexora Alienware Laptop"
               loading="lazy"
               decoding="async"
               draggable="false"
@@ -93,7 +93,7 @@ const Alienware = () => {
           <span className="small-heading">MORE DEALS</span>
 
           <h2>
-            Dell
+            nexora
             <strong>Alienware</strong>
           </h2>
 

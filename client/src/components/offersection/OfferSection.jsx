@@ -39,7 +39,7 @@ const OfferSection = () => {
 
         <p>
           Upgrade your everyday experience
-          with powerful Dell technology built
+          with powerful nexora technology built
           for modern life.
         </p>
 

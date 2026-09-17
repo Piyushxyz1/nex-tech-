@@ -1,7 +1,7 @@
-# Dell Tech
+# nexora Tech
 
 ## Overview
-This project is a  frontend implementation focused on creating a premium digital experience for Dell Technologies products.
+This project is a  frontend implementation focused on creating a premium digital experience for nexora Technologies products.
 
 The main focus was to build a premium, modern product experience with a dark visual style, smooth animations, responsive layouts, and interactive product sections.
 

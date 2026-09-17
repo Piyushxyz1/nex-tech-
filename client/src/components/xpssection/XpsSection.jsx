@@ -14,7 +14,7 @@ const XpsSection = () => {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <span className="small-heading">DELL XPS</span>
+        <span className="small-heading">nexora XPS</span>
 
         <h2>
           Designed for<strong> what's next.</strong>

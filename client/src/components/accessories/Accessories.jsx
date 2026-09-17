@@ -15,13 +15,13 @@ const accessories = [
   },
   {
     image: laptop2,
-    title: "Dell G16 Gaming Laptop",
+    title: "nexora G16 Gaming Laptop",
     price: "₹1,29,999/-*",
     note: "INCL. ALL TAXES",
   },
   {
     image: laptop3,
-    title: "Dell G15 Gaming Laptop",
+    title: "nexora G15 Gaming Laptop",
     price: "₹99,999/-*",
     note: "INCL. ALL TAXES",
   },

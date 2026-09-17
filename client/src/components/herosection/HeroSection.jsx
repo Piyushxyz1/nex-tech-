@@ -24,7 +24,7 @@ const slides = [
  
   {
     video: lapvideo2,
-    label: "DELL PREMIUM",
+    label: "nexora PREMIUM",
     title: "Built for\nwhat's next.",
     description:
       "Experience next-generation performance wrapped in an elegant, refined design.",

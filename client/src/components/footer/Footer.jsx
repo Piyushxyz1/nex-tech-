@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer-brand-section">
 
           <div className="footer-brand">
-            DELL Technologies
+            nexora Technologies
           </div>
 
           <p className="footer-tagline">
@@ -188,7 +188,7 @@ const Footer = () => {
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
 
-              <span>support@dell.com</span>
+              <span>support@nexora.com</span>
 
             </div>
 
@@ -208,7 +208,7 @@ const Footer = () => {
               </svg>
 
               <span>
-                1 Dell Way,
+                1 nexora Way,
                 <br />
                 Round Rock, TX
               </span>
@@ -231,7 +231,7 @@ const Footer = () => {
         <div className="newsletter-content">
 
           <h3>
-            Stay connected with Dell Technologies
+            Stay connected with nexora Technologies
           </h3>
 
           <p>
@@ -255,7 +255,7 @@ const Footer = () => {
         <div className="footer-bottom-left">
 
           <p>
-            © 2026 Dell Technologies. All rights reserved.
+            © 2026 nexora Technologies. All rights reserved.
           </p>
 
         </div>
