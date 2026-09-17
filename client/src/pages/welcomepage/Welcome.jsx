@@ -215,24 +215,7 @@ const Welcome = () => {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="welcome-footer">
-
-        <Link to="/" className="welcome-logo">
-          <strong>NEXORA</strong>
-          <span>TECHNOLOGIES</span>
-        </Link>
-
-        <p>
-          © {new Date().getFullYear()} NEXORA Technologies.
-          All rights reserved.
-        </p>
-
-        <div className="footer-links">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
-        </div>
-
-      </footer>
+   
 
     </div>
   );
