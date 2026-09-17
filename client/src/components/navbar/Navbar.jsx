@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./navbar.css";
 
@@ -50,9 +49,9 @@ const Navbar = () => {
     if (!query) return false;
 
     return (
-      product.name.toLowerCase().includes(query) ||
-      product.category.toLowerCase().includes(query) ||
-      product.brand.toLowerCase().includes(query)
+      product.name?.toLowerCase().includes(query) ||
+      product.category?.toLowerCase().includes(query) ||
+      product.brand?.toLowerCase().includes(query)
     );
   });
 
@@ -63,6 +62,12 @@ const Navbar = () => {
 
     setSearch("");
     setMenuOpen(false);
+  };
+
+  // ================= SEARCH INPUT =================
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
   };
 
   // ================= CART =================
@@ -120,7 +125,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* ================= SEARCH ================= */}
+        {/* ================= DESKTOP SEARCH ================= */}
 
         <div className="search-wrapper">
 
@@ -132,7 +137,7 @@ const Navbar = () => {
               type="text"
               placeholder="Search products..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleSearchChange}
             />
 
             {search && (
@@ -148,7 +153,7 @@ const Navbar = () => {
 
           </div>
 
-          {/* ================= SEARCH RESULTS ================= */}
+          {/* DESKTOP SEARCH RESULTS */}
 
           {search.trim() && (
             <div className="search-results">
@@ -342,35 +347,95 @@ const Navbar = () => {
 
         <div className="mobile-menu">
 
-          {/* MOBILE SEARCH */}
+          {/* ================= MOBILE SEARCH ================= */}
 
-          <div className="mobile-search">
+          <div className="mobile-search-wrapper">
 
-            <Search size={17} />
+            <div className="mobile-search">
 
-            <input
-              type="text"
-              placeholder="Search laptops, headphones..."
-              value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
-            />
+              <Search size={17} />
 
-            {search && (
-              <button
-                type="button"
-                className="search-clear"
-                onClick={() => setSearch("")}
-                aria-label="Clear search"
-              >
-                <X size={15} />
-              </button>
+              <input
+                type="text"
+                placeholder="Search laptops, headphones..."
+                value={search}
+                onChange={handleSearchChange}
+              />
+
+              {search && (
+                <button
+                  type="button"
+                  className="search-clear"
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                >
+                  <X size={15} />
+                </button>
+              )}
+
+            </div>
+
+            {/* MOBILE SEARCH RESULTS */}
+
+            {search.trim() && (
+
+              <div className="mobile-search-results">
+
+                {filteredProducts.length > 0 ? (
+
+                  filteredProducts.map((product) => (
+
+                    <div
+                      className="search-result-item"
+                      key={product.id}
+                      onClick={() =>
+                        handleProductClick(product.id)
+                      }
+                    >
+
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                      />
+
+                      <div className="search-product-info">
+
+                        <h4>
+                          {product.name}
+                        </h4>
+
+                        <span>
+                          {product.category}
+                        </span>
+
+                        <p>
+                          ₹
+                          {product.price?.toLocaleString(
+                            "en-IN"
+                          )}
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  ))
+
+                ) : (
+
+                  <div className="no-results">
+                    No products found
+                  </div>
+
+                )}
+
+              </div>
+
             )}
 
           </div>
 
-          {/* MOBILE LINKS */}
+          {/* ================= MOBILE LINKS ================= */}
 
           <Link
             to="/products"
@@ -393,7 +458,7 @@ const Navbar = () => {
             Offers
           </Link>
 
-          {/* MOBILE AUTH */}
+          {/* ================= MOBILE AUTH ================= */}
 
           <div className="mobile-auth">
 
@@ -434,7 +499,7 @@ const Navbar = () => {
 
           </div>
 
-          {/* MOBILE CART */}
+          {/* ================= MOBILE CART ================= */}
 
           <button
             type="button"
@@ -464,4 +529,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
