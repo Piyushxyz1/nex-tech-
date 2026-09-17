@@ -916,7 +916,7 @@ export const products = [
     name: "Nexora Gaming Mouse X",
     category: "Mouse",
     brand: "Nexora",
-
+    price: 6019,
     originalPrice: 6999,
     discount: 14,
     onOffer: true,

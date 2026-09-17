@@ -184,10 +184,7 @@ const Navbar = () => {
                       </span>
 
                       <p>
-                        ₹
-                        {product.price?.toLocaleString(
-                          "en-IN"
-                        )}
+                         ₹{(product.price ?? product.originalPrice ?? 0).toLocaleString("en-IN")}
                       </p>
 
                     </div>
