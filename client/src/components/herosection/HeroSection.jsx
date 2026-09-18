@@ -18,6 +18,7 @@ import {
 
 import lapvideo2 from "../../assets/project-lap.mp4";
 import lapvideo3 from "../../assets/project-lap-3.mp4";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 const slides = [
@@ -52,6 +53,7 @@ const HeroSection = () => {
 
   const videoRef = useRef(null);
   const autoSlideInterval = useRef(null);
+  const navigate = useNavigate()
 
   /*
    * Keeps track of videos that have already been preloaded.
@@ -467,7 +469,7 @@ const HeroSection = () => {
               {currentSlide.description}
             </p>
 
-            <button className="know-more">
+            <button className="know-more" onClick={()=>{navigate('/products')}}>
               KNOW MORE
               <ArrowRight size={16} />
             </button>

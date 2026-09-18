@@ -11,7 +11,7 @@ configDotenv()
 
 const app = express();
 app.use(cors({
-    origin: process.env.frontend_url
+    origin: [process.env.frontend_url,"http://localhost:5173"]
 }))
 
 const PORT = process.env.PORT;
