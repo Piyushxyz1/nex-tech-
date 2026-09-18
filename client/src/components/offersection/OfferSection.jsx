@@ -2,8 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const OfferSection = () => {
+
+  const navigate = useNavigate();
   return (
     <section className="special-offer-section">
 
@@ -63,7 +66,7 @@ const OfferSection = () => {
           <span>✓ Easy EMI</span>
         </div>
 
-        <button className="dark-button">
+        <button className="dark-button" onClick={()=>{navigate('/offers')}}>
           SHOP NOW
           <ArrowRight size={15} />
         </button>

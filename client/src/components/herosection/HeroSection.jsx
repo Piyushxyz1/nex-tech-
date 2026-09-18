@@ -469,10 +469,6 @@ const HeroSection = () => {
               {currentSlide.description}
             </p>
 
-            <button className="know-more" onClick={()=>{navigate('/products')}}>
-              KNOW MORE
-              <ArrowRight size={16} />
-            </button>
           </div>
 
           <div className="price-badge">

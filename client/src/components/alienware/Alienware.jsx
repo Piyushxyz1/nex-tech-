@@ -2,10 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 import slide5 from "../../assets/slide-5.jpg";
 
 const Alienware = () => {
+  const navigate = useNavigate()
   return (
     <section className="alienware-hero" id="offers">
       <div className="alienware-bg" />
@@ -108,7 +109,7 @@ const Alienware = () => {
             <strong>₹1,49,999/-*</strong>
           </div>
 
-          <button className="dark-button">
+          <button className="dark-button"onClick={()=>{navigate('/products')}}>
             SHOP NOW
             <ArrowRight size={15} />
           </button>
