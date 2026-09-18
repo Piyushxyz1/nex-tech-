@@ -4,10 +4,10 @@ import { Eye, EyeOff, UserPlus } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./auth.css";
-import  { API_URL} from "../../config/api"
+import { API_URL } from "../../config/api";
 
 const Signup = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,7 +53,7 @@ const Signup = () => {
       const response = await axios.post(`${API_URL}/api/signup`, {
         name,
         email,
-        password
+        password,
       });
 
       if (response.data.success) {
@@ -61,7 +61,7 @@ const Signup = () => {
         navigate("/login");
       }
     } catch (error) {
-       error.response?.data?.message || "Unable to create account"
+      toast.error(error.response?.data?.message || "Unable to create account");
     } finally {
       setLoading(false);
     }
