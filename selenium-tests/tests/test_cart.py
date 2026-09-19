@@ -11,9 +11,9 @@ EMAIL = "seleniumtest999@gmail.com"
 PASSWORD = "Test@123"
 
 
-# =========================================================
+
 # LOGIN HELPER
-# =========================================================
+
 
 def login(driver):
 
@@ -60,9 +60,8 @@ def login(driver):
     time.sleep(2)
 
 
-# =========================================================
 # ADD PRODUCT TO CART HELPER
-# =========================================================
+
 
 def add_product_to_cart(driver):
 
@@ -116,14 +115,11 @@ def add_product_to_cart(driver):
     )
 
 
-# =========================================================
+
 # TEST 1 - ADD TO CART
-# =========================================================
 
 def test_add_to_cart():
-
     driver = webdriver.Chrome()
-
     try:
 
         # Login
@@ -149,9 +145,9 @@ def test_add_to_cart():
         driver.quit()
 
 
-# =========================================================
+
 # TEST 2 - CART QUANTITY
-# =========================================================
+
 
 def test_cart_quantity():
 
@@ -184,10 +180,8 @@ def test_cart_quantity():
 
         print("Initial Quantity:", initial_quantity)
 
-        # =================================================
         # INCREASE
-        # =================================================
-
+    
         increase_button = cart_item.find_element(
             By.CSS_SELECTOR,
             "button[aria-label^='Increase quantity']"
@@ -217,10 +211,8 @@ def test_cart_quantity():
 
         time.sleep(2)
 
-        # =================================================
         # DECREASE
-        # =================================================
-
+   
         decrease_button = cart_item.find_element(
             By.CSS_SELECTOR,
             "button[aria-label^='Decrease quantity']"
