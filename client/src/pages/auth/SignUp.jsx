@@ -91,12 +91,6 @@ const Signup = () => {
             explore and shop technology.
           </p>
 
-          <div className="auth-tech-visual">
-            <img
-              src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1200&q=85"
-              alt="Premium technology"
-            />
-          </div>
         </div>
       </section>
 
