@@ -1,79 +1,33 @@
-# Nexora — MERN E-Commerce Platform
+# Nexora
 
-Nexora is a full-stack e-commerce web application built using the **MERN stack**, designed to provide a complete shopping workflow from product discovery to cart management and checkout.
+Nexora is a MERN stack e-commerce application built with React, Node.js, Express and MongoDB.
 
-The application uses **React Hooks and Redux Toolkit** for frontend state management and **JWT-based authentication** for securing user sessions and protected backend APIs.
+The project includes JWT-based authentication, Redux state management, product and cart functionality, and checkout flow. The application was also tested locally using Selenium WebDriver with Python.
 
-The project was also tested locally using **Selenium with Python** to automate and validate key user workflows against the application running on `localhost`.
-
----
-
-## Overview
-
-Nexora demonstrates the development of a modern full-stack web application with a focus on:
-
-* Component-based frontend development with React
-* Global state management using Redux Toolkit
-* JWT-based authentication and protected routes
-* RESTful backend APIs
-* MongoDB-based data persistence
-* Cart and checkout workflows
-* Automated browser testing using Selenium
-* Local end-to-end workflow validation
-
----
-
-## Key Features
-
-### Authentication
+## Features
 
 * User registration and login
 * JWT-based authentication
-* Protected API routes
-* Token-based session handling
-* Authentication-aware frontend state
+* Product listing and product details
+* Shopping cart
+* Cart quantity management
+* Checkout flow
+* Redux Toolkit for application state
+* REST APIs with Node.js and Express
+* MongoDB database
+* Local end-to-end testing with Selenium
 
-### Product Management
-
-* Product listing and browsing
-* Product details
-* Category-based product organization
-* Search and filtering functionality
-
-### Shopping Cart
-
-* Add products to cart
-* Update product quantities
-* Remove products from cart
-* Persistent cart state through backend APIs
-* Redux-based cart state management
-
-### Checkout
-
-* Checkout workflow
-* Order-related data handling
-* Authentication-protected checkout operations
-
-### Automated Testing
-
-* Browser automation using Selenium
-* Python-based test scripts
-* End-to-end testing of critical user workflows
-* Tests executed against the locally running application
-
----
-
-## Technology Stack
+## Tech Stack
 
 ### Frontend
 
 * React.js
+* JavaScript
 * React Hooks
 * Redux Toolkit
+* Axios
 * HTML5
 * CSS3
-* JavaScript
-* Axios
 
 ### Backend
 
@@ -81,9 +35,6 @@ Nexora demonstrates the development of a modern full-stack web application with 
 * Express.js
 * REST APIs
 * JWT Authentication
-
-### Database
-
 * MongoDB
 
 ### Testing
@@ -91,162 +42,77 @@ Nexora demonstrates the development of a modern full-stack web application with 
 * Selenium WebDriver
 * Python
 
-### Development Tools
+### Tools
 
 * Git
 * GitHub
 * Postman
-* VS Code
 
----
-
-## Application Architecture
-
-Nexora follows a traditional MERN full-stack architecture:
-
-```text
-                    ┌──────────────────────┐
-                    │      React.js        │
-                    │      Frontend        │
-                    └──────────┬───────────┘
-                               │
-                         HTTP / REST API
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │     Node.js /        │
-                    │     Express.js       │
-                    │       Backend        │
-                    └──────────┬───────────┘
-                               │
-                               │ Mongoose
-                               ▼
-                    ┌──────────────────────┐
-                    │       MongoDB        │
-                    │       Database       │
-                    └──────────────────────┘
-```
-
-Authentication flow:
+## Application Flow
 
 ```text
 User
-  │
-  ▼
-React Login
-  │
-  ▼
-Express Authentication API
-  │
-  ▼
-Credential Verification
-  │
-  ▼
-JWT Generated
-  │
-  ▼
-Frontend Stores Token
-  │
-  ▼
-Token Sent With Protected Requests
-  │
-  ▼
-JWT Middleware
-  │
-  ▼
-Protected API Resource
+  ↓
+React Frontend
+  ↓
+Redux / Axios
+  ↓
+Express REST API
+  ↓
+JWT Authentication
+  ↓
+MongoDB
 ```
-
----
-
-## State Management
-
-Redux Toolkit is used as the centralized state management solution for application-wide state.
-
-The frontend manages important state such as:
-
-* Authentication token
-* Authentication status
-* Shopping cart
-* Cart item quantities
-
-React Hooks are used throughout the application for component state, lifecycle management and interaction with application services.
-
----
 
 ## Authentication
 
-Nexora uses **JSON Web Tokens (JWT)** for authentication.
+Nexora uses JWT for user authentication.
 
-The general authentication flow is:
+After login, the server returns a JWT token. The frontend stores the token and sends it with protected API requests. The backend middleware verifies the token before allowing access to protected routes.
 
 ```text
 Login
   ↓
-Backend validates credentials
+Backend verifies credentials
   ↓
 JWT generated
   ↓
-Token returned to frontend
-  ↓
 Token stored on client
   ↓
-Protected requests include token
+Token sent with protected requests
   ↓
-Backend middleware validates token
-  ↓
-Request proceeds to protected controller
+Backend verifies token
 ```
 
-Protected backend routes validate the JWT before allowing access to authenticated resources.
+## State Management
 
----
+Redux Toolkit is used to manage application-level state.
 
-## Selenium Testing
+The main purpose of Redux in the project is to keep shared data such as authentication information and cart state available across different components without relying on prop drilling.
 
-Nexora includes automated browser testing using **Selenium with Python**.
+## Testing
 
-The tests were executed against the application running locally on `localhost`.
+The application was tested using **Selenium WebDriver with Python**.
 
-### Testing Scope
+The Selenium tests were performed against the application running locally on `localhost`. The tests cover user interactions and important application flows from the browser level.
 
-The Selenium test suite was used to validate important user-facing workflows such as:
-
-* Opening the application
-* User authentication
-* Navigation
-* Product interaction
-* Cart operations
-* Checkout-related workflows
-
-The purpose of the Selenium implementation was to demonstrate automated end-to-end browser testing rather than production-scale test infrastructure.
-
-### Testing Flow
+Example flow:
 
 ```text
-Selenium + Python
-        │
-        ▼
-Launch Local Application
-        │
-        ▼
-Browser Automation
-        │
-        ▼
-User Interaction
-        │
-        ▼
-Application Response
-        │
-        ▼
-Assertions / Validation
+Open Application
+      ↓
+Login
+      ↓
+Browse Products
+      ↓
+Add Product to Cart
+      ↓
+Update Cart
+      ↓
+Checkout
 ```
 
----
-
 ## Project Structure
-
-A simplified project structure is:
 
 ```text
 Nexora/
@@ -255,11 +121,9 @@ Nexora/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
-│   │   ├── hooks/
 │   │   ├── redux/
-│   │   ├── assets/
-│   │   └── App.jsx
-│   │
+│   │   ├── hooks/
+│   │   └── ...
 │   └── package.json
 │
 ├── server/
@@ -267,27 +131,45 @@ Nexora/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── config/
 │   └── server.js
 │
-├── selenium/
-│   ├── tests/
-│   └── requirements.txt
+├── tests/
+│   └── selenium/
 │
-├── .gitignore
 ├── README.md
 └── package.json
 ```
 
-> The exact directory structure may vary depending on the current project version.
+> Folder names may vary depending on the current project structure.
 
----
+## Getting Started
 
-## Environment Variables
+### 1. Clone the repository
 
-Create the required environment files for the frontend and backend.
+```bash
+git clone <your-repository-url>
+cd Nexora
+```
 
-Example backend configuration:
+### 2. Install dependencies
+
+Install frontend dependencies:
+
+```bash
+cd client
+npm install
+```
+
+Install backend dependencies:
+
+```bash
+cd ../server
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the backend and add the required configuration:
 
 ```env
 PORT=5000
@@ -295,211 +177,74 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-Example frontend configuration:
+Use the environment variables required by your current configuration.
 
-```env
-VITE_API_URL=http://localhost:5000
-```
-
-Do not commit `.env` files or secrets to the repository.
-
----
-
-## Installation & Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-
-cd nexora
-```
-
-### 2. Install Backend Dependencies
+### 4. Start the backend
 
 ```bash
 cd server
-
-npm install
-```
-
-### 3. Configure Backend Environment Variables
-
-Create:
-
-```text
-server/.env
-```
-
-and add the required configuration.
-
-### 4. Start the Backend
-
-```bash
 npm run dev
 ```
 
-The backend will start on the configured local port.
-
----
-
-### 5. Install Frontend Dependencies
-
-Open another terminal:
+### 5. Start the frontend
 
 ```bash
 cd client
-
-npm install
-```
-
-### 6. Start the Frontend
-
-```bash
 npm run dev
 ```
 
-The React development server will provide the local application URL, typically:
+The application can then be accessed through the local Vite development URL.
 
-```text
-http://localhost:5173
-```
-
----
-
-## Running Selenium Tests
+## Selenium Tests
 
 Make sure both the frontend and backend are running locally before executing the Selenium tests.
 
-Install Python dependencies:
+Install the Python dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install selenium
 ```
 
-Then execute the Selenium test suite:
+Run the Selenium test script:
 
 ```bash
-python test_file.py
+python <test-file>.py
 ```
 
-Replace `test_file.py` with the appropriate test entry point in the repository.
+## API
 
----
+The backend exposes REST APIs for the main application functionality, including:
 
-## API Architecture
+* Authentication
+* Products
+* Cart
+* Orders
+* Payment
 
-The backend follows a REST API architecture.
+Protected endpoints require a valid JWT token.
 
-Typical request flow:
+## What I Worked On
 
-```text
-React Component
-      │
-      ▼
-Axios / HTTP Request
-      │
-      ▼
-Express Route
-      │
-      ▼
-Authentication Middleware
-      │
-      ▼
-Controller
-      │
-      ▼
-MongoDB
-      │
-      ▼
-JSON Response
-      │
-      ▼
-Redux / React State
-      │
-      ▼
-UI Update
-```
+During the development of Nexora, I worked on:
 
----
-
-## Security Considerations
-
-The project implements several basic application security practices:
-
-* JWT-based authentication
-* Protected backend routes
-* Environment variables for sensitive configuration
-* Server-side authentication validation
-* `.gitignore` configuration to prevent accidental secret commits
-
-For production deployment, additional security hardening would be required depending on the deployment environment and application requirements.
-
----
-
-## Testing Approach
-
-The project combines application-level development with automated browser testing.
-
-### Manual Testing
-
-Functional workflows were manually verified during development.
-
-### Automated Testing
-
-Selenium was used to automate browser-based workflows against the locally running application.
-
-This provides coverage for critical user journeys and helps identify regressions during development.
-
----
-
-## Future Improvements
-
-Potential improvements include:
-
-* Production-grade automated test pipeline
-* Expanded Selenium test coverage
-* Unit and API integration testing
-* CI/CD integration for automated testing
-* Containerized deployment
-* Kubernetes-based deployment
-* Enhanced application monitoring
-* Improved test reporting
-
----
-
-## Learning Outcomes
-
-Through Nexora, the project provided practical experience with:
-
-* Full-stack MERN application development
-* React component architecture
-* React Hooks
-* Redux Toolkit state management
-* REST API development
-* JWT authentication
-* MongoDB integration
-* Frontend-backend communication
-* Automated browser testing with Selenium
-* Python-based test automation
-* Git and GitHub workflow
-
----
+* Building the frontend using React
+* Managing shared state with Redux Toolkit
+* Implementing JWT authentication
+* Creating REST APIs using Node.js and Express
+* Connecting the application with MongoDB
+* Implementing cart and checkout functionality
+* Testing user flows using Selenium and Python
+* Debugging frontend and backend API integration
 
 ## Project Status
 
-**Status:** Completed / Maintained
-
-Nexora was developed as a full-stack learning and portfolio project with a focus on practical MERN development, authentication, state management and automated end-to-end testing.
-
----
+Nexora is a completed learning/project implementation built to practice MERN stack development, authentication, state management, API integration and browser automation testing.
 
 ## Author
 
-### Piyush Negi
+**Piyush Negi**
 
-**Full Stack Developer | DevOps**
+Full Stack Developer
 
-* GitHub: YOUR_GITHUB_URL
-* LinkedIn: YOUR_LINKEDIN_URL
-* Portfolio: YOUR_PORTFOLIO_URL
+* GitHub: `<your-github-profile>`
+* Portfolio: `<your-portfolio>`
