@@ -136,8 +136,6 @@ Nexora is a completed MERN stack project developed to practice full-stack applic
 
 **Piyush Negi**
 
-Full Stack Developer
 
-GitHub: `<your-github-profile>`
 
-Portfolio: `<your-portfolio>`
+
