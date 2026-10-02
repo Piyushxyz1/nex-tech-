@@ -1,6 +1,6 @@
 # Nexora
 
-Nexora is a MERN stack e-commerce application built with React, Node.js, Express and MongoDB.
+Nexora is a MERN stack e-commerce application built using React, Node.js, Express and MongoDB.
 
 The project includes JWT-based authentication, Redux state management, product and cart functionality, and checkout flow. The application was also tested locally using Selenium WebDriver with Python.
 
@@ -12,14 +12,14 @@ The project includes JWT-based authentication, Redux state management, product a
 * Shopping cart
 * Cart quantity management
 * Checkout flow
-* Redux Toolkit for application state
-* REST APIs with Node.js and Express
+* Redux Toolkit for application state management
+* REST APIs using Node.js and Express
 * MongoDB database
-* Local end-to-end testing with Selenium
+* Local browser testing using Selenium
 
 ## Tech Stack
 
-### Frontend
+**Frontend**
 
 * React.js
 * JavaScript
@@ -29,20 +29,20 @@ The project includes JWT-based authentication, Redux state management, product a
 * HTML5
 * CSS3
 
-### Backend
+**Backend**
 
 * Node.js
 * Express.js
 * REST APIs
-* JWT Authentication
+* JWT
 * MongoDB
 
-### Testing
+**Testing**
 
 * Selenium WebDriver
 * Python
 
-### Tools
+**Tools**
 
 * Git
 * GitHub
@@ -50,170 +50,61 @@ The project includes JWT-based authentication, Redux state management, product a
 
 ## Application Flow
 
-```text
-User
-  ↓
-React Frontend
-  ↓
-Redux / Axios
-  ↓
-Express REST API
-  ↓
-JWT Authentication
-  ↓
-MongoDB
-```
+User → React Frontend → Redux / Axios → Express REST API → JWT Authentication → MongoDB
 
 ## Authentication
 
-Nexora uses JWT for user authentication.
+Nexora uses JWT-based authentication.
 
-After login, the server returns a JWT token. The frontend stores the token and sends it with protected API requests. The backend middleware verifies the token before allowing access to protected routes.
-
-```text
-Login
-  ↓
-Backend verifies credentials
-  ↓
-JWT generated
-  ↓
-Token stored on client
-  ↓
-Token sent with protected requests
-  ↓
-Backend verifies token
-```
+After a successful login, the backend generates a JWT token. The frontend stores the token and sends it with protected API requests. Backend middleware verifies the token before allowing access to protected routes.
 
 ## State Management
 
-Redux Toolkit is used to manage application-level state.
+Redux Toolkit is used for managing shared application state.
 
-The main purpose of Redux in the project is to keep shared data such as authentication information and cart state available across different components without relying on prop drilling.
+It is mainly used for authentication-related data and cart state so that this information can be accessed across different components.
 
 ## Testing
 
-The application was tested using **Selenium WebDriver with Python**.
+The application was tested using Selenium WebDriver with Python.
 
-The Selenium tests were performed against the application running locally on `localhost`. The tests cover user interactions and important application flows from the browser level.
+Testing was performed against the application running locally on `localhost`. Selenium was used to automate browser interactions and test important user flows.
 
-Example flow:
+The tested flow includes:
 
-```text
-Open Application
-      ↓
-Login
-      ↓
-Browse Products
-      ↓
-Add Product to Cart
-      ↓
-Update Cart
-      ↓
-Checkout
-```
-
-## Project Structure
-
-```text
-Nexora/
-│
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── redux/
-│   │   ├── hooks/
-│   │   └── ...
-│   └── package.json
-│
-├── server/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
-│
-├── tests/
-│   └── selenium/
-│
-├── README.md
-└── package.json
-```
-
-> Folder names may vary depending on the current project structure.
+Login → Browse Products → Add to Cart → Update Cart → Checkout
 
 ## Getting Started
 
-### 1. Clone the repository
+### Clone the Repository
 
-```bash
-git clone <your-repository-url>
-cd Nexora
-```
+Clone the Nexora repository and navigate to the project directory.
 
-### 2. Install dependencies
+### Install Dependencies
 
-Install frontend dependencies:
+Install the required dependencies for both the frontend and backend using npm.
 
-```bash
-cd client
-npm install
-```
+### Environment Variables
 
-Install backend dependencies:
+Configure the required backend environment variables such as:
 
-```bash
-cd ../server
-npm install
-```
+* MongoDB connection string
+* JWT secret
+* Server port
 
-### 3. Configure environment variables
+### Run the Application
 
-Create a `.env` file in the backend and add the required configuration:
+Start the backend and frontend development servers separately and open the local frontend URL in your browser.
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
+## Selenium Testing
 
-Use the environment variables required by your current configuration.
+Make sure the frontend and backend are running locally before executing the Selenium tests.
 
-### 4. Start the backend
-
-```bash
-cd server
-npm run dev
-```
-
-### 5. Start the frontend
-
-```bash
-cd client
-npm run dev
-```
-
-The application can then be accessed through the local Vite development URL.
-
-## Selenium Tests
-
-Make sure both the frontend and backend are running locally before executing the Selenium tests.
-
-Install the Python dependencies:
-
-```bash
-pip install selenium
-```
-
-Run the Selenium test script:
-
-```bash
-python <test-file>.py
-```
+The Selenium test scripts are written in Python and use Selenium WebDriver to interact with the application through the browser.
 
 ## API
 
-The backend exposes REST APIs for the main application functionality, including:
+The backend provides REST APIs for the main application functionality, including:
 
 * Authentication
 * Products
@@ -221,24 +112,25 @@ The backend exposes REST APIs for the main application functionality, including:
 * Orders
 * Payment
 
-Protected endpoints require a valid JWT token.
+Protected APIs require a valid JWT token.
 
-## What I Worked On
+## Development Work
 
-During the development of Nexora, I worked on:
+The main development work included:
 
-* Building the frontend using React
-* Managing shared state with Redux Toolkit
+* Building the frontend with React
+* Using React Hooks for component logic
+* Managing application state with Redux Toolkit
 * Implementing JWT authentication
-* Creating REST APIs using Node.js and Express
-* Connecting the application with MongoDB
+* Developing REST APIs with Node.js and Express
+* Integrating MongoDB
 * Implementing cart and checkout functionality
-* Testing user flows using Selenium and Python
+* Testing user flows with Selenium and Python
 * Debugging frontend and backend API integration
 
 ## Project Status
 
-Nexora is a completed learning/project implementation built to practice MERN stack development, authentication, state management, API integration and browser automation testing.
+Nexora is a completed MERN stack project developed to practice full-stack application development, authentication, state management, API integration and browser automation testing.
 
 ## Author
 
@@ -246,5 +138,6 @@ Nexora is a completed learning/project implementation built to practice MERN sta
 
 Full Stack Developer
 
-* GitHub: `<your-github-profile>`
-* Portfolio: `<your-portfolio>`
+GitHub: `<your-github-profile>`
+
+Portfolio: `<your-portfolio>`
