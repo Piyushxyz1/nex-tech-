@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import laptop1 from "../../assets/laptop-1.avif";
-import laptop2 from "../../assets/laptop-2.avif";
-import laptop3 from "../../assets/laptop-3.avif";
+import laptop1 from "../../assets/images/home/laptop-1.avif";
+import laptop2 from "../../assets/images/home/laptop-2.avif";
+import laptop3 from "../../assets/images/home/laptop-3.avif";
 
 const accessories = [
   {

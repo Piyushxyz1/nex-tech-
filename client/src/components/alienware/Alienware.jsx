@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import slide5 from "../../assets/slide-5.jpg";
+import slide5 from "../../assets/images/home/slide-5.jpg";
 
 const Alienware = () => {
   const navigate = useNavigate()

@@ -16,8 +16,8 @@ import {
   Pause,
 } from "lucide-react";
 
-import lapvideo2 from "../../assets/project-lap.mp4";
-import lapvideo3 from "../../assets/project-lap-3.mp4";
+import lapvideo2 from "../../assets/images/home/project-lap.mp4";
+import lapvideo3 from "../../assets/images/home/project-lap-3.mp4";
 import { Navigate, useNavigate } from "react-router-dom";
 
 
