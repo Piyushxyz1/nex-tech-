@@ -1,12 +1,6 @@
-import React from 'react'
-import {
-    ArrowRight,
-    Star,
-
-} from "lucide-react";
+import React from "react";
+import { ArrowRight, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
@@ -14,14 +8,19 @@ const ProductCard = ({ product }) => {
     const handleProductClick = (id) => {
         navigate(`/products/${id}`);
     };
+
+    const finalPrice =
+        product.price ??
+        Math.round(
+            product.originalPrice * (1 - product.discount / 100)
+        );
+
     return (
         <article
             className="product-card"
-            key={product.id}
             onClick={() => handleProductClick(product.id)}
         >
 
-            {/* IMAGE */}
             <div className="product-image-wrapper">
 
                 <div className="product-badge">
@@ -36,33 +35,26 @@ const ProductCard = ({ product }) => {
 
                 <div className="product-hover">
                     <span>View Product</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={14} />
                 </div>
 
             </div>
 
-            {/* CONTENT */}
             <div className="product-card-content">
 
                 <div className="product-meta">
-
-                    <span>
-                        {product.category}
-                    </span>
+                    <span>{product.category}</span>
 
                     <div className="product-rating">
                         <Star
-                            size={13}
+                            size={12}
                             fill="currentColor"
                         />
                         {product.rating}
                     </div>
-
                 </div>
 
-                <h2>
-                    {product.name}
-                </h2>
+                <h2>{product.name}</h2>
 
                 <p className="product-brand">
                     {product.brand} Technology
@@ -71,14 +63,10 @@ const ProductCard = ({ product }) => {
                 <div className="product-card-bottom">
 
                     <div className="product-price">
-                        <span>
-                            Starting from
-                        </span>
+                        <span>Starting from</span>
 
                         <strong>
-                            ₹{(product.price ?? Math.round(
-                                product.originalPrice * (1 - product.discount / 100)
-                            )).toLocaleString("en-IN")}
+                            ₹{finalPrice.toLocaleString("en-IN")}
                         </strong>
                     </div>
 
@@ -90,7 +78,7 @@ const ProductCard = ({ product }) => {
                         }}
                         aria-label={`View ${product.name}`}
                     >
-                        <ArrowRight size={18} />
+                        <ArrowRight size={17} />
                     </button>
 
                 </div>
@@ -98,7 +86,7 @@ const ProductCard = ({ product }) => {
             </div>
 
         </article>
-    )
-}
+    );
+};
 
-export default ProductCard
+export default ProductCard;

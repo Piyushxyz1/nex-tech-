@@ -8,6 +8,10 @@ import {
   Truck,
   Sparkles,
 } from "lucide-react";
+import Welcomebanner from"../../assets/images/welcome/banner.avif"
+import laptopIntro from"../../assets/images/welcome/laptop-intro-page.avif"
+import MobileIntro from"../../assets/images/welcome/mobile-intro-page.avif"
+import GamingIntro from"../../assets/images/welcome/gaming-intro-page.avif"
 
 import "./welcome.css";
 
@@ -15,24 +19,6 @@ const Welcome = () => {
   return (
     <div className="welcome-page">
 
-      {/* ================= NAVBAR ================= */}
-      <nav className="welcome-navbar">
-        <Link to="/" className="welcome-logo">
-          <strong>NEXORA</strong>
-          <span>TECHNOLOGIES</span>
-        </Link>
-
-        <div className="welcome-nav-actions">
-          <Link to="/login" className="welcome-login">
-            Login
-          </Link>
-
-          <Link to="/signup" className="welcome-signup">
-            Get Started
-            <ArrowRight size={17} />
-          </Link>
-        </div>
-      </nav>
 
       {/* ================= HERO ================= */}
       <main>
@@ -95,8 +81,8 @@ const Welcome = () => {
 
             <div className="welcome-image-card">
               <img
-                src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1800&q=90"
-                alt="Premium laptop"
+                src={Welcomebanner}
+                alt="welcome-banner"
               />
 
               <div className="welcome-image-overlay"></div>
@@ -137,7 +123,7 @@ const Welcome = () => {
 
             <Link to="/products" className="welcome-category-card large">
               <img
-                src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=1000&q=85"
+                src={laptopIntro}
                 alt="Laptop"
               />
 
@@ -153,7 +139,7 @@ const Welcome = () => {
 
             <Link to="/products" className="welcome-category-card">
               <img
-                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=85"
+                src={MobileIntro}
                 alt="Smartphone"
               />
 
@@ -169,7 +155,7 @@ const Welcome = () => {
 
             <Link to="/products" className="welcome-category-card">
               <img
-                src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=900&q=85"
+                src={GamingIntro}
                 alt="Gaming setup"
               />
 

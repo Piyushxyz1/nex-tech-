@@ -16,17 +16,17 @@ def test_navbar_links():
 
     try:
 
-        # ==========================================
+    
         # OPEN WEBSITE
-        # ==========================================
+     
 
         driver.get(BASE_URL)
 
         time.sleep(2)
 
-        # ==========================================
+      
         # PRODUCTS LINK
-        # ==========================================
+      
 
         products_link = wait.until(
             EC.element_to_be_clickable(
@@ -49,9 +49,8 @@ def test_navbar_links():
 
         time.sleep(2)
 
-        # ==========================================
         # ACCESSORIES LINK
-        # ==========================================
+     
 
         accessories_link = wait.until(
             EC.element_to_be_clickable(
@@ -74,9 +73,9 @@ def test_navbar_links():
 
         time.sleep(2)
 
-        # ==========================================
+      
         # OFFERS LINK
-        # ==========================================
+        
 
         offers_link = wait.until(
             EC.element_to_be_clickable(

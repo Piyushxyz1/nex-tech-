@@ -246,9 +246,9 @@ def test_cart_quantity():
         driver.quit()
 
 
-# =========================================================
+
 # TEST 3 - REMOVE CART ITEM
-# =========================================================
+
 
 def test_remove_cart_item():
 
@@ -304,9 +304,9 @@ def test_remove_cart_item():
         driver.quit()
 
 
-# =========================================================
+
 # TEST 4 - CHECKOUT NAVIGATION
-# =========================================================
+
 
 def test_checkout_navigation():
 

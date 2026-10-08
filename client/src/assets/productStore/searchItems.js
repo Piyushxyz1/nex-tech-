@@ -1,4 +1,20 @@
-
+import NexoraGamingX1 from "../images/product-images/nexora-gaming-x1.png";
+import NexoraProbook15 from "../images/product-images/nexora-probook-15.webp";
+import NexoraUltrabookAir from "../images/product-images/nexora-ultrabook-air.jpg";
+import NexoraCreatorPro16 from "../images/product-images/nexora-creator-pro-16.jpg";
+import NexoraWorkMate14 from "../images/product-images/nexora-workmate-14.jpg";
+import NexoraStudioDesktop from "../images/product-images/nexora-studio-desktop.jpg";
+import NexoraProStation from "../images/product-images/nexora-prostation.webp";
+import NexoraHomePC from "../images/product-images/nexora-home-pc.jpg";
+import NexoraSoundMaxPro from "../images/product-images/nexora-soundmax-pro.webp";
+import NexoraStudioHeadphone from "../images/product-images/nexora-studio-headphone.webp";
+import NexoraAirSound from "../images/product-images/nexora-airsound.webp";
+import NexoraBassElite from "../images/product-images/nexora-bass-elite.webp";
+import NexoraKeyboardPro from "../images/product-images/nexora-keyboard-pro.png";
+import NexoraPrecisionMouse from "../images/product-images/nexora-precision-mouse.png";
+import NexoraGamingMouse from "../images/product-images/nexora-gaming-mouse.jpg";
+import NexoraUsbChub from "../images/product-images/nexora-usb-c-hub.jpeg";
+import LaptopStand from "../images/product-images/laptop-stand.webp";
 export const products = [
   // =========================================================
   // LAPTOPS
@@ -17,8 +33,7 @@ export const products = [
     rating: 4.7,
     stock: 18,
 
-    image:
-      "https://static.wixstatic.com/media/cb30f4_6b48edbe7c9a47e397a465d4fb6282d0~mv2.png",
+    image: NexoraGamingX1,
 
     description:
       "Nexora Gaming X1 is built for gamers, developers and performance-focused users who demand powerful computing, responsive graphics and reliable performance for demanding workloads.",
@@ -53,11 +68,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Gaming X1",
-      "Power Adapter",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Gaming X1", "Power Adapter", "User Manual"],
   },
 
   {
@@ -73,8 +84,7 @@ export const products = [
     rating: 4.5,
     stock: 24,
 
-    image:
-      "https://22317019.fs1.hubspotusercontent-na1.net/hubfs/22317019/Productos-06.png",
+    image: NexoraProbook15,
 
     description:
       "Nexora ProBook 15 combines dependable performance with a professional design, making it suitable for office work, development, productivity and everyday computing.",
@@ -108,11 +118,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora ProBook 15",
-      "Power Adapter",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora ProBook 15", "Power Adapter", "User Manual"],
   },
 
   {
@@ -125,8 +131,7 @@ export const products = [
     rating: 4.8,
     stock: 12,
 
-    image:
-      "https://static.wixstatic.com/media/cb30f4_6b48edbe7c9a47e397a465d4fb6282d0~mv2.png",
+    image: NexoraUltrabookAir,
 
     description:
       "Nexora UltraBook Air delivers a premium balance of portability, performance and battery efficiency for professionals who work on the move.",
@@ -160,11 +165,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora UltraBook Air",
-      "Power Adapter",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora UltraBook Air", "Power Adapter", "User Manual"],
   },
 
   {
@@ -177,8 +178,7 @@ export const products = [
     rating: 4.9,
     stock: 8,
 
-    image:
-      "https://22317019.fs1.hubspotusercontent-na1.net/hubfs/22317019/Productos-06.png",
+    image: NexoraCreatorPro16,
 
     description:
       "Nexora Creator Pro 16 is designed for creators, developers and professionals who need powerful hardware for demanding creative and computing workloads.",
@@ -213,11 +213,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Creator Pro 16",
-      "Power Adapter",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Creator Pro 16", "Power Adapter", "User Manual"],
   },
 
   {
@@ -230,8 +226,7 @@ export const products = [
     rating: 4.3,
     stock: 31,
 
-    image:
-      "https://static.wixstatic.com/media/cb30f4_6b48edbe7c9a47e397a465d4fb6282d0~mv2.png",
+    image: NexoraWorkMate14,
 
     description:
       "Nexora WorkMate 14 is an everyday productivity laptop designed for professionals, students and users looking for dependable performance.",
@@ -265,11 +260,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora WorkMate 14",
-      "Power Adapter",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora WorkMate 14", "Power Adapter", "User Manual"],
   },
 
   // =========================================================
@@ -286,8 +277,7 @@ export const products = [
     rating: 4.6,
     stock: 14,
 
-    image:
-      "https://image.made-in-china.com/2f0j00UvRhmyMzaYGf/Wholesale-Computer-Desktop-Aio-21-5-23-8-Inch-I3-I5-I7-All-in-One-Computers-for-Home-Office-FHD-New-All-in-One-PC.jpg",
+    image: NexoraStudioDesktop,
 
     description:
       "Nexora Studio Desktop provides a powerful desktop computing experience for professionals, developers and creative users.",
@@ -321,11 +311,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Studio Desktop",
-      "Power Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Studio Desktop", "Power Cable", "User Manual"],
   },
 
   {
@@ -339,7 +325,7 @@ export const products = [
     stock: 7,
 
     image:
-      "https://image.made-in-china.com/2f0j00UvRhmyMzaYGf/Wholesale-Computer-Desktop-Aio-21-5-23-8-Inch-I3-I5-I7-All-in-One-Computers-for-Home-Office-FHD-New-All-in-One-PC.jpg",
+     NexoraProStation,
 
     description:
       "Nexora ProStation is engineered for demanding professional workloads, development environments and advanced multitasking.",
@@ -373,11 +359,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora ProStation",
-      "Power Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora ProStation", "Power Cable", "User Manual"],
   },
 
   {
@@ -391,7 +373,7 @@ export const products = [
     stock: 22,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+      NexoraHomePC,
 
     description:
       "Nexora Home PC is designed for everyday home computing, education, browsing, entertainment and general productivity.",
@@ -425,11 +407,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Home PC",
-      "Power Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Home PC", "Power Cable", "User Manual"],
   },
 
   // =========================================================
@@ -447,7 +425,7 @@ export const products = [
     stock: 35,
 
     image:
-      "https://cdn.shopify.com/s/files/1/0608/8589/3342/files/good_1.png?v=1770971927",
+      NexoraStudioHeadphone,
 
     description:
       "Nexora Studio Headphones deliver balanced audio and immersive sound for music, entertainment, calls and professional listening.",
@@ -498,7 +476,7 @@ export const products = [
     stock: 19,
 
     image:
-      "https://cdn.shopify.com/s/files/1/0608/8589/3342/files/good_1.png?v=1770971927",
+      NexoraSoundMaxPro,
 
     description:
       "Nexora SoundMax Pro is a premium wireless audio experience built for listeners who want powerful sound, comfort and advanced noise cancellation.",
@@ -550,7 +528,7 @@ export const products = [
     stock: 42,
 
     image:
-      "https://cdn.shopify.com/s/files/1/0608/8589/3342/files/good_1.png?v=1770971927",
+      NexoraAirSound,
 
     description:
       "Nexora AirSound offers a lightweight wireless listening experience with clear audio and comfortable everyday usability.",
@@ -583,11 +561,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora AirSound",
-      "USB-C Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora AirSound", "USB-C Cable", "User Manual"],
   },
 
   {
@@ -601,7 +575,7 @@ export const products = [
     stock: 27,
 
     image:
-      "https://cdn.shopify.com/s/files/1/0608/8589/3342/files/good_1.png?v=1770971927",
+      NexoraBassElite,
 
     description:
       "Nexora Bass Elite is tuned for powerful low frequencies while maintaining a balanced listening experience across music and entertainment.",
@@ -634,175 +608,16 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Bass Elite",
-      "USB-C Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Bass Elite", "USB-C Cable", "User Manual"],
   },
 
-  // =========================================================
-  // MONITORS
-  // =========================================================
 
-  {
-    id: 13,
-    name: "Nexora Vision 27",
-    category: "Monitor",
-    brand: "Nexora",
-
-    price: 29999,
-    rating: 4.7,
-    stock: 16,
-
-    image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
-
-    description:
-      "Nexora Vision 27 provides an immersive 27-inch display designed for productivity, entertainment, development and everyday computing.",
-
-    specifications: {
-      Size: "27 Inches",
-      Resolution: "2560 × 1440",
-      RefreshRate: "144Hz",
-      Panel: "IPS",
-      ResponseTime: "1ms",
-      Connectivity: "HDMI, DisplayPort",
-    },
-
-    features: [
-      "27-inch QHD display",
-      "144Hz refresh rate",
-      "IPS panel",
-      "Fast response time",
-      "Wide viewing angles",
-    ],
-
-    highlights: [
-      "Sharp QHD visuals",
-      "Smooth high-refresh experience",
-      "Ideal for work and gaming",
-      "Immersive viewing area",
-    ],
-
-    warranty: "1 Year Warranty",
-
-    delivery: "Free delivery available",
-
-    inTheBox: [
-      "Nexora Vision 27",
-      "Display Stand",
-      "Power Cable",
-      "User Manual",
-    ],
-  },
-
-  {
-    id: 14,
-    name: "Nexora UltraView 32",
-    category: "Monitor",
-    brand: "Nexora",
-
-    price: 44999,
-    rating: 4.8,
-    stock: 10,
-
-    image:
-      "https://image.made-in-china.com/2f0j00UvRhmyMzaYGf/Wholesale-Computer-Desktop-Aio-21-5-23-8-Inch-I3-I5-I7-All-in-One-Computers-for-Home-Office-FHD-New-All-in-One-PC.jpg",
-
-    description:
-      "Nexora UltraView 32 delivers a large immersive display for creators, professionals, developers and entertainment enthusiasts.",
-
-    specifications: {
-      Size: "32 Inches",
-      Resolution: "3840 × 2160",
-      RefreshRate: "144Hz",
-      Panel: "IPS",
-      ResponseTime: "1ms",
-      Connectivity: "HDMI, DisplayPort, USB-C",
-    },
-
-    features: [
-      "32-inch 4K display",
-      "144Hz refresh rate",
-      "IPS panel technology",
-      "USB-C connectivity",
-      "Ultra-wide viewing experience",
-    ],
-
-    highlights: [
-      "Large 4K workspace",
-      "Excellent visual clarity",
-      "Designed for creators",
-      "Ideal for multitasking",
-    ],
-
-    warranty: "2 Year Warranty",
-
-    delivery: "Free delivery available",
-
-    inTheBox: [
-      "Nexora UltraView 32",
-      "Display Stand",
-      "Power Cable",
-      "User Manual",
-    ],
-  },
 
   // =========================================================
   // KEYBOARDS
   // =========================================================
 
-  {
-    id: 15,
-    name: "Nexora Mechanical K1",
-    category: "Keyboard",
-    brand: "Nexora",
-
-    price: 6999,
-    rating: 4.5,
-    stock: 50,
-
-    image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
-
-    description:
-      "Nexora Mechanical K1 is designed for users who want responsive mechanical switches, comfortable typing and reliable everyday performance.",
-
-    specifications: {
-      Switches: "Mechanical",
-      Connection: "USB",
-      Layout: "Full Size",
-      Backlight: "RGB",
-      KeyRollover: "N-Key Rollover",
-      Compatibility: "Windows, macOS",
-    },
-
-    features: [
-      "Mechanical switches",
-      "RGB backlighting",
-      "N-key rollover",
-      "Durable construction",
-      "Full-size layout",
-    ],
-
-    highlights: [
-      "Responsive mechanical typing",
-      "Designed for productivity and gaming",
-      "Customizable RGB lighting",
-      "Durable everyday keyboard",
-    ],
-
-    warranty: "1 Year Warranty",
-
-    delivery: "Free delivery available",
-
-    inTheBox: [
-      "Nexora Mechanical K1",
-      "USB Cable",
-      "User Manual",
-    ],
-  },
+ 
 
   {
     id: 16,
@@ -815,7 +630,7 @@ export const products = [
     stock: 32,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+      NexoraKeyboardPro,
 
     description:
       "Nexora RGB Keyboard Pro combines mechanical performance with customizable RGB lighting for gaming and professional setups.",
@@ -871,7 +686,7 @@ export const products = [
     stock: 64,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+      NexoraPrecisionMouse,
 
     description:
       "Nexora Precision Mouse is designed for accurate everyday navigation, productivity and comfortable long-duration computer use.",
@@ -904,11 +719,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Precision Mouse",
-      "USB Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Precision Mouse", "USB Cable", "User Manual"],
   },
 
   {
@@ -924,7 +735,7 @@ export const products = [
     stock: 41,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+      NexoraGamingMouse,
 
     description:
       "Nexora Gaming Mouse X is designed for competitive gaming with responsive tracking, programmable controls and a lightweight ergonomic shape.",
@@ -957,11 +768,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Gaming Mouse X",
-      "USB Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Gaming Mouse X", "USB Cable", "User Manual"],
   },
 
   // =========================================================
@@ -979,7 +786,7 @@ export const products = [
     stock: 55,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+     NexoraUsbChub,
 
     description:
       "Nexora USB-C Hub expands your laptop connectivity with multiple ports for displays, storage devices, peripherals and charging.",
@@ -1012,11 +819,7 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora USB-C Hub",
-      "USB-C Cable",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora USB-C Hub", "USB-C Cable", "User Manual"],
   },
 
   {
@@ -1030,7 +833,7 @@ export const products = [
     stock: 48,
 
     image:
-      "https://static2.e-himart.co.kr/contents/goods/ep/00/23/93/72/89/0023937289__32-C0000KR__N.jpg",
+      LaptopStand,
 
     description:
       "Nexora Laptop Stand provides a stable and ergonomic platform for laptops while helping create a cleaner and more comfortable workspace.",
@@ -1063,13 +866,8 @@ export const products = [
 
     delivery: "Free delivery available",
 
-    inTheBox: [
-      "Nexora Laptop Stand",
-      "Protective Pouch",
-      "User Manual",
-    ],
+    inTheBox: ["Nexora Laptop Stand", "Protective Pouch", "User Manual"],
   },
 ];
 
 export default products;
-

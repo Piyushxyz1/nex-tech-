@@ -112,9 +112,8 @@ def add_product_to_cart(driver):
     print("Cart item verified")
 
 
-# =========================================================
 # TEST - RAZORPAY CHECKOUT
-# =========================================================
+
 
 def test_razorpay_checkout():
 
@@ -122,23 +121,22 @@ def test_razorpay_checkout():
 
     try:
 
-        # -------------------------------------------------
+      
         # STEP 1: Login
-        # -------------------------------------------------
+       
 
         login(driver)
 
-        # -------------------------------------------------
         # STEP 2: Add product to cart
-        # -------------------------------------------------
+     
 
         add_product_to_cart(driver)
 
         wait = WebDriverWait(driver, 15)
 
-        # -------------------------------------------------
+        
         # STEP 3: Click Checkout
-        # -------------------------------------------------
+       
 
         checkout_button = wait.until(
             EC.element_to_be_clickable(
@@ -150,9 +148,9 @@ def test_razorpay_checkout():
 
         print("Checkout button clicked")
 
-        # -------------------------------------------------
+       
         # STEP 4: Verify Checkout page
-        # -------------------------------------------------
+        
 
         wait.until(
             EC.url_contains("/checkout")
@@ -162,9 +160,9 @@ def test_razorpay_checkout():
 
         print("Checkout page opened")
 
-        # -------------------------------------------------
+      
         # STEP 5: Find Payment button
-        # -------------------------------------------------
+   
 
         pay_button = wait.until(
             EC.element_to_be_clickable(
@@ -180,10 +178,9 @@ def test_razorpay_checkout():
 
         print("Payment button found")
 
-        # -------------------------------------------------
+   
         # STEP 6: Click Pay
-        # -------------------------------------------------
-
+      
         pay_button.click()
 
         print("Razorpay payment button clicked")
