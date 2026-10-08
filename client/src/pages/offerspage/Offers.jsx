@@ -29,7 +29,7 @@ const Offers = () => {
       <section className="offers-hero">
         <div className="offers-hero-content">
           <span className="offers-badge">
-            🔥 LIMITED TIME OFFERS
+          LIMITED TIME OFFERS
           </span>
 
           <h1>
