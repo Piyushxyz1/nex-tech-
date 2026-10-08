@@ -1113,7 +1113,7 @@ img {
    XPS SECTION
  */
 .xps-section {
-  --xps-bg: url("../../assets/new-nexora-headphone.png");
+  --xps-bg: url("../../assets/images/home/new-dell-headphone.png");
 
   position: relative;
   width: 100%;
@@ -1885,7 +1885,7 @@ img {
 
   background-image:
     url(
-      "../../assets/intro.avif"
+      "../../assets/images/home/intro.avif"
     );
 
   background-size: cover;
