@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer-brand-section">
 
           <div className="footer-brand">
-            nexora Technologies
+            Nexora Technologies
           </div>
 
           <p className="footer-tagline">
