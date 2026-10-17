@@ -1,5 +1,5 @@
-
 import Cart from "../models/cart.model.js";
+import products from "../product-data/products.js";
 
 // Calculate total
 const calculateTotal = (items) => {
@@ -9,6 +9,25 @@ const calculateTotal = (items) => {
   );
 };
 
+// Sync cart prices with backend product catalogue
+const syncPricesFromCatalogue = (cart) => {
+  cart.items = cart.items.filter((item) =>
+    products.some(
+      (product) => Number(product.id) === Number(item.productId)
+    )
+  );
+
+  cart.items.forEach((item) => {
+    const product = products.find(
+      (product) => Number(product.id) === Number(item.productId)
+    );
+
+    item.price = product.price;
+  });
+
+  cart.totalAmount = calculateTotal(cart.items);
+};
+
 // GET /api/cart
 export const getCart = async (req, res) => {
   try {
@@ -16,7 +35,6 @@ export const getCart = async (req, res) => {
 
     let cart = await Cart.findOne({ userId });
 
-    // Agar cart nahi hai to empty cart create karo
     if (!cart) {
       cart = await Cart.create({
         userId,
@@ -24,6 +42,9 @@ export const getCart = async (req, res) => {
         totalAmount: 0,
       });
     }
+
+    syncPricesFromCatalogue(cart);
+    await cart.save();
 
     return res.status(200).json({
       success: true,
@@ -44,20 +65,30 @@ export const getCart = async (req, res) => {
 export const addToCart = async (req, res) => {
   try {
     const userId = req.userId;
+    const { id } = req.body;
 
-    const {
-      id,
-      name,
-      price,
-      image,
-      category,
-      brand,
-    } = req.body;
+    const productId = Number(id);
 
-    if (!id || !name || price === undefined) {
+    if (
+      id === undefined ||
+      id === null ||
+      id === "" ||
+      !Number.isSafeInteger(productId)
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Product details are required",
+        message: "Valid product ID is required",
+      });
+    }
+
+    const product = products.find(
+      (item) => item.id === productId && item.name === req.body.name
+    );
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
       });
     }
 
@@ -71,20 +102,22 @@ export const addToCart = async (req, res) => {
       });
     }
 
+    syncPricesFromCatalogue(cart);
+
     const existingItem = cart.items.find(
-      (item) => item.productId === String(id)
+      (item) => item.productId === String(product.id)
     );
 
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
       cart.items.push({
-        productId: String(id),
-        name,
-        price: Number(price),
-        image: image || "",
-        category: category || "",
-        brand: brand || "",
+        productId: String(product.id),
+        name: product.name,
+        price: product.price,
+        image: req.body.image || "",
+        category: product.category || "",
+        brand: product.brand || "",
         quantity: 1,
       });
     }
@@ -123,6 +156,8 @@ export const removeFromCart = async (req, res) => {
         message: "Cart not found",
       });
     }
+
+    syncPricesFromCatalogue(cart);
 
     cart.items = cart.items.filter(
       (item) => item.productId !== String(productId)
@@ -163,6 +198,8 @@ export const increaseQuantity = async (req, res) => {
       });
     }
 
+    syncPricesFromCatalogue(cart);
+
     const item = cart.items.find(
       (item) => item.productId === String(productId)
     );
@@ -200,7 +237,14 @@ export const increaseQuantity = async (req, res) => {
 export const decreaseQuantity = async (req, res) => {
   try {
     const userId = req.userId;
-    const { productId } = req.params;
+    const productId = String(req.params.productId).trim();
+
+    if (!productId) {
+      return res.status(400).json({
+        success: false,
+        message: "Valid product ID is required",
+      });
+    }
 
     const cart = await Cart.findOne({ userId });
 
@@ -211,8 +255,10 @@ export const decreaseQuantity = async (req, res) => {
       });
     }
 
+    syncPricesFromCatalogue(cart);
+
     const item = cart.items.find(
-      (item) => item.productId === String(productId)
+      (item) => item.productId === productId
     );
 
     if (!item) {
@@ -226,7 +272,7 @@ export const decreaseQuantity = async (req, res) => {
       item.quantity -= 1;
     } else {
       cart.items = cart.items.filter(
-        (cartItem) => cartItem.productId !== String(productId)
+        (cartItem) => cartItem.productId !== productId
       );
     }
 
@@ -284,4 +330,3 @@ export const clearCart = async (req, res) => {
     });
   }
 };
-

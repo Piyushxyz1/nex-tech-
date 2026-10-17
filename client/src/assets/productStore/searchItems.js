@@ -620,7 +620,7 @@ export const products = [
  
 
   {
-    id: 16,
+    id: 13,
     name: "Nexora RGB Keyboard Pro",
     category: "Keyboard",
     brand: "Nexora",
@@ -676,7 +676,7 @@ export const products = [
   // =========================================================
 
   {
-    id: 17,
+    id: 14,
     name: "Nexora Precision Mouse",
     category: "Mouse",
     brand: "Nexora",
@@ -723,7 +723,7 @@ export const products = [
   },
 
   {
-    id: 18,
+    id: 15,
     name: "Nexora Gaming Mouse X",
     category: "Mouse",
     brand: "Nexora",
@@ -776,7 +776,7 @@ export const products = [
   // =========================================================
 
   {
-    id: 19,
+    id: 16,
     name: "Nexora USB-C Hub",
     category: "Accessories",
     brand: "Nexora",
@@ -823,7 +823,7 @@ export const products = [
   },
 
   {
-    id: 20,
+    id: 17,
     name: "Nexora Laptop Stand",
     category: "Accessories",
     brand: "Nexora",
