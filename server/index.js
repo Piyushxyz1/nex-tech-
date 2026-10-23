@@ -12,7 +12,7 @@ configDotenv()
 const app = express();
 app.use(cors())
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
@@ -26,7 +26,12 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/orders", orderRoutes);
 
-app.listen(PORT, () => {
-connectDB()
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", async () => {
+  try {
+    await connectDB();
+    console.log(`Server running on port ${PORT}`);
+  } catch (error) {
+    console.error("Database connection failed:", error);
+    process.exit(1);
+  }
 });
