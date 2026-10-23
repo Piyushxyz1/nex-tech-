@@ -10,7 +10,7 @@ import cors from "cors"
 configDotenv()
 
 const app = express();
-app.use(cors())
+app.use(cors({ origin: ["https://client-ecru-nine-18.vercel.app","http://localhost:5173"] }));
 
 const PORT = process.env.PORT || 8000;
 
