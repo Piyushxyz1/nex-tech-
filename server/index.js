@@ -10,9 +10,7 @@ import cors from "cors"
 configDotenv()
 
 const app = express();
-app.use(cors({
-    origin:[process.env.frontend_url,"http://localhost:5173"]
-}))
+app.use(cors())
 
 const PORT = process.env.PORT;
 
