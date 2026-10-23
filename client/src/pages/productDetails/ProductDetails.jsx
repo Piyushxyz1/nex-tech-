@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import { useSelector,useDispatch } from "react-redux";
@@ -19,7 +19,11 @@ import {
 import products from "../../assets/productStore/searchItems";
 import "./productDetails.css";
 import { toast } from "react-toastify";
+
 import { setCart } from "../../redux/cartSlice";
+
+import { productGalleryImages } from "../../assets/productStore/searchItems";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -27,20 +31,22 @@ const ProductDetails = () => {
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items || []);
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+    setSelectedImage("");
   }, [id]);
 
   // Find product according to URL id
   const product = products.find((item) => item.id === Number(id));
 
-  // ============================
+
   // INVALID PRODUCT
-  // ============================
+
 
   const { addItemToCart } = useCart();
 
@@ -147,11 +153,94 @@ const ProductDetails = () => {
         <div className="product-details-image-section">
           <div className="details-image-badge">NEXORA</div>
 
-          <div className="details-image-container">
-            <img src={product.image} alt={product.name} />
+          {/* PRODUCT IMAGE GALLERY */}
+          <div
+            className="product-image-gallery"
+            style={{
+              display: "flex",
+              alignItems: "stretch",
+              gap: "14px",
+              width: "100%",
+              marginTop: "14px",
+            }}
+          >
+            <div
+              className="product-image-thumbnails"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                flexShrink: 0,
+                width: "70px",
+              }}
+            >
+              {[product.image, ...(productGalleryImages[product.category] || [])]
+                .filter((image, index, images) => image && images.indexOf(image) === index)
+                .map((image, index) => (
+                  <button
+                    type="button"
+                    key={image}
+                    onClick={() => setSelectedImage(image)}
+                    aria-label={`View product image ${index + 1}`}
+                    aria-pressed={(selectedImage || product.image) === image}
+                    style={{
+                      width: "70px",
+                      height: "66px",
+                      padding: "4px",
+                      borderRadius: "6px",
+                      border:
+                        (selectedImage || product.image) === image
+                          ? "2px solid #2563eb"
+                          : "1px solid #d1d5db",
+                      background: "#ffffff",
+                      cursor: "pointer",
+                      overflow: "hidden",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name} view ${index + 1}`}
+                      loading="lazy"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </button>
+                ))}
+            </div>
+
+            <div
+              className="details-image-container"
+              style={{
+                flex: "1",
+                minWidth: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={selectedImage || product.image}
+                alt={product.name}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "100%",
+                  maxHeight: "440px",
+                  objectFit: "contain",
+                }}
+              />
+            </div>
           </div>
 
-          <div className="image-category">{product.category}</div>
+          {/* <div className="image-category">{product.category}</div> */}
         </div>
 
         {/* ================= PRODUCT INFO ================= */}
