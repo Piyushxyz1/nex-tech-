@@ -47,9 +47,7 @@ const Login = () => {
 
       const { token } = response.data;
 
-      // Redux login reducer:
-      // token Redux state me set hoga
-      // aur localStorage me bhi save hoga
+     
       dispatch(login(token));
 
       toast.success("Login successful!");
@@ -67,7 +65,6 @@ const Login = () => {
   return (
     <div className="auth-page">
 
-      {/* ================= LEFT SHOWCASE ================= */}
 
       <section className="auth-showcase">
 
