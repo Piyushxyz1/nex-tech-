@@ -1,458 +1,384 @@
-/* 
-   MAIN SECTION
- */
+
+/* =========================================
+   CENTER SLIDER
+   Component: CenterSlider
+========================================= */
 
 .center-slider-section {
-  width: 100%;
-  min-height: 760px;
+  --slider-duration: 650ms;
+  --slider-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --slider-text: #ffffff;
+  --slider-background: #ffffff;
 
-  background: #ffffff;
+  width: 100%;
+  min-height: auto;
+  padding-block: clamp(3rem, 6vw, 5rem);
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
+  background: var(--slider-background);
   overflow: hidden;
-
-  padding: 80px 0;
 }
 
-
-/* 
-   MAIN SLIDER
- */
+/* =========================================
+   SLIDER CONTAINER
+========================================= */
 
 .center-slider {
-  width: 100%;
-  height: 600px;
-
   position: relative;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: clamp(26rem, 42vw, 37.5rem);
 
-  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
+/* =========================================
+   BASE CARD
+========================================= */
 
-/* 
-   ALL CARDS
- */
 .slider-card {
   position: absolute;
-  transition:
-    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 700ms ease,
-    filter 700ms ease;
 
-  will-change: transform, opacity;
+  overflow: hidden;
+  background: #111111;
+
+  transition:
+    transform var(--slider-duration) var(--slider-easing),
+    opacity 450ms ease;
+
+  backface-visibility: hidden;
 }
-/* 
-   IMAGE
- */
+
+/* =========================================
+   CARD IMAGE
+========================================= */
 
 .slider-card img {
+  display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: cover;
-
-  display: block;
-
-  border-radius: 0;
+  object-position: center;
 }
 
-
-/* 
-   IMAGE GRADIENT
- */
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
 
 .slide-gradient {
   position: absolute;
-
   inset: 0;
+
+  z-index: 1;
+  pointer-events: none;
 
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.82) 0%,
     rgba(0, 0, 0, 0.35) 35%,
-    rgba(0, 0, 0, 0) 65%
+    transparent 65%
   );
-
-  z-index: 1;
-
-  pointer-events: none;
 }
 
-
-/* 
-   CENTER IMAGE
- */
+/* =========================================
+   ACTIVE CARD
+========================================= */
 
 .slider-card.active {
-  width: 70vw;
-  height: 500px;
+  width: min(70vw, 72rem);
+  height: clamp(25rem, 35vw, 31.25rem);
 
   left: 50%;
 
-  transform: translateX(-50%) scale(1);
+  transform: translateX(-50%);
 
   z-index: 5;
-
   opacity: 1;
 
-  filter: brightness(1);
-
-  box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
 }
 
-
-/* Slider - LEFT IMAGE*/
+/* =========================================
+   LEFT CARD
+========================================= */
 
 .slider-card.left {
-  width: 450px;
-  height: 500px;
+  width: clamp(14rem, 30vw, 28rem);
+  height: clamp(22rem, 35vw, 31.25rem);
 
   left: 0;
 
-  transform:
-    translateX(-15%)
-    scale(0.82);
-
+  transform: translateX(-15%) scale(0.82);
   transform-origin: left center;
 
   z-index: 2;
-
-  opacity: 0.6;
-
-  filter: brightness(0.55);
+  opacity: 0.65;
 }
 
+.slider-card.left .slide-gradient {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.25)
+  );
+}
 
-/*RIGHT IMAGE */
+/* =========================================
+   RIGHT CARD
+========================================= */
 
 .slider-card.right {
-  width: 450px;
-  height: 500px;
+  width: clamp(14rem, 30vw, 28rem);
+  height: clamp(22rem, 35vw, 31.25rem);
 
   right: 0;
 
-  transform:
-    translateX(15%)
-    scale(0.82);
-
+  transform: translateX(15%) scale(0.82);
   transform-origin: right center;
 
   z-index: 2;
-
-  opacity: 0.6;
-
-  filter: brightness(0.55);
+  opacity: 0.65;
 }
 
+.slider-card.right .slide-gradient {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.25)
+  );
+}
 
-/* HIDDEN SLIDES*/
+/* =========================================
+   HIDDEN CARD
+========================================= */
 
 .slider-card.hidden {
   transform: scale(0.5);
 
   opacity: 0;
-
   z-index: 0;
 
   pointer-events: none;
 }
 
-
-/*TEXT CONTENT*/
+/* =========================================
+   SLIDE CONTENT
+========================================= */
 
 .slide-content {
   position: absolute;
 
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   bottom: 0;
-
-  padding: 45px 40px 38px;
-
-  color: #fff;
 
   z-index: 2;
 
+  padding: 2.5rem;
+
+  color: var(--slider-text);
   pointer-events: none;
 }
 
-
-/*TITLE */
-
 .slide-content h3 {
-  margin: 0 0 10px;
+  margin: 0 0 0.625rem;
 
-  font-size: 28px;
-
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
   line-height: 1.15;
-
   font-weight: 600;
-
-  letter-spacing: -0.5px;
 }
 
-
-/*DESCRIPTION*/
-
 .slide-content p {
+  max-width: 30rem;
   margin: 0;
 
-  max-width: 480px;
-
-  font-size: 17px;
-
+  font-size: 1rem;
   line-height: 1.5;
 
   color: rgba(255, 255, 255, 0.88);
 }
 
-
-/* SIDE IMAGE TEXT */
+/* SIDE CARD CONTENT */
 
 .slider-card.left .slide-content,
 .slider-card.right .slide-content {
-  padding: 28px 25px;
+  padding: 1.5rem;
 }
 
 .slider-card.left .slide-content h3,
 .slider-card.right .slide-content h3 {
-  font-size: 19px;
+  font-size: 1.15rem;
 }
 
 .slider-card.left .slide-content p,
 .slider-card.right .slide-content p {
-  font-size: 13px;
-
-  line-height: 1.4;
+  font-size: 0.8rem;
 }
 
-
-/* HIDDEN TEXT */
+/* HIDDEN CONTENT */
 
 .slider-card.hidden .slide-content {
   opacity: 0;
 }
 
-
-/* CONTROLS */
+/* =========================================
+   SLIDER CONTROLS
+========================================= */
 
 .slider-controls {
   display: flex;
+  align-items: center;
+  justify-content: center;
 
-  gap: 15px;
-
-  margin-top: 45px;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .slider-controls button {
-  width: 55px;
-  height: 55px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  width: 3.25rem;
+  height: 3.25rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 50%;
 
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #ffffff;
+  color: #111111;
 
-  background: rgba(255, 255, 255, 0.08);
-
-  color: #fff;
-
-  font-size: 22px;
-
+  font-size: 1.25rem;
   cursor: pointer;
 
   transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
 }
 
 .slider-controls button:hover {
-  background: #fff;
-
-  color: #000;
-
-  transform: scale(1.08);
+  background: #111111;
+  color: #ffffff;
 }
 
+.slider-controls button:focus-visible {
+  outline: 3px solid #0672ce;
+  outline-offset: 4px;
+}
 
-/*TABLET */
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 1000px) {
-
-  .center-slider {
-    height: 560px;
-  }
-
-
-  /* CENTER */
-
   .slider-card.active {
-    width: 70vw;
-
-    height: 520px;
+    width: 76vw;
+    height: 32rem;
   }
 
-
-  /* LEFT */
+  .slider-card.left,
+  .slider-card.right {
+    width: 23rem;
+    height: 29rem;
+  }
 
   .slider-card.left {
-    width: 360px;
-
-    height: 470px;
-
-    left: 0;
-
-    transform:
-      translateX(-18%)
-      scale(0.76);
+    transform: translateX(-25%) scale(0.76);
   }
-
-
-  /* RIGHT */
 
   .slider-card.right {
-    width: 360px;
-
-    height: 470px;
-
-    right: 0;
-
-    transform:
-      translateX(18%)
-      scale(0.76);
-  }
-
-
-  /* TEXT */
-
-  .slide-content h3 {
-    font-size: 24px;
-  }
-
-  .slide-content p {
-    font-size: 15px;
+    transform: translateX(25%) scale(0.76);
   }
 }
 
-
-/*MOBILE*/
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
-
   .center-slider-section {
-    min-height: 560px;
-
-    padding: 50px 0;
+    padding-block: 3rem;
   }
 
   .center-slider {
-    height: 430px;
+    height: 27rem;
   }
-
-
-  /* CENTER */
 
   .slider-card.active {
     width: 88vw;
-
-    height: 400px;
-
-    left: 50%;
-
-    transform:
-      translateX(-50%)
-      scale(1);
+    height: 25rem;
   }
 
+  .slider-card.left,
+  .slider-card.right {
+    width: 18.75rem;
+    height: 22.5rem;
 
-  /* LEFT */
+    opacity: 0.3;
+  }
 
   .slider-card.left {
-    width: 300px;
-
-    height: 360px;
-
-    left: 0;
-
-    transform:
-      translateX(-55%)
-      scale(0.55);
-
-    opacity: 0.3;
+    transform: translateX(-55%) scale(0.55);
   }
-
-
-  /* RIGHT */
 
   .slider-card.right {
-    width: 300px;
-
-    height: 360px;
-
-    right: 0;
-
-    transform:
-      translateX(55%)
-      scale(0.55);
-
-    opacity: 0.3;
+    transform: translateX(55%) scale(0.55);
   }
 
-
-  /* CENTER TEXT */
-
   .slide-content {
-    padding: 30px 25px 25px;
+    padding: 1.5rem;
   }
 
   .slide-content h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .slide-content p {
-    font-size: 14px;
-
-    line-height: 1.4;
+    font-size: 0.875rem;
   }
-
-
-  /* SIDE TEXT */
 
   .slider-card.left .slide-content,
   .slider-card.right .slide-content {
-    padding: 20px;
+    padding: 1.25rem;
   }
 
   .slider-card.left .slide-content h3,
   .slider-card.right .slide-content h3 {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .slider-card.left .slide-content p,
   .slider-card.right .slide-content p {
-    font-size: 11px;
+    font-size: 0.7rem;
   }
 
-
-  /* CONTROLS */
-
   .slider-controls {
-    margin-top: 25px;
+    margin-top: 1.5rem;
   }
 
   .slider-controls button {
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
+  }
+}
 
-    font-size: 18px;
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .slider-card,
+  .slider-controls button {
+    transition: none;
   }
 }
