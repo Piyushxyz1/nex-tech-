@@ -13,27 +13,15 @@ const IntroSection = () => {
       {/* Content */}
       <motion.div
         className="intro-content"
-        initial={{
-          opacity: 0,
-          y: 80,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          amount: 0.3,
-        }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{
-          duration: 2, // Increased from 1.5
-          delay: 0.3, // Added delay
-          ease: [0.25, 0.1, 0.15, 1], // Smoother easing curve
+          duration: 0.8,
+          delay: 0.3,
         }}
       >
-        <span className="small-heading">
-          nexora TECHNOLOGIES
-        </span>
+        <span className="small-heading">nexora TECHNOLOGIES</span>
 
         <h2>
           Technology that
@@ -41,10 +29,8 @@ const IntroSection = () => {
         </h2>
 
         <p>
-          From everyday productivity to
-          extraordinary performance, discover
-          technology designed around the way
-          you live, work and create.
+          From everyday productivity to extraordinary performance, discover
+          technology designed around the way you live, work and create.
         </p>
       </motion.div>
     </section>

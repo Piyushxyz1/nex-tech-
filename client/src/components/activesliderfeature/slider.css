@@ -1,384 +1,388 @@
-
-/* =========================================
-   CENTER SLIDER
-   Component: CenterSlider
-========================================= */
+/* ================================
+   CENTER SLIDER SECTION
+================================ */
 
 .center-slider-section {
-  --slider-duration: 650ms;
-  --slider-easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --slider-text: #ffffff;
-  --slider-background: #ffffff;
-
   width: 100%;
-  min-height: auto;
-  padding-block: clamp(3rem, 6vw, 5rem);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--slider-background);
+  padding: 90px 0 75px;
   overflow: hidden;
+  background: #f7f8fa;
+  font-family: inherit;
 }
 
-/* =========================================
-   SLIDER CONTAINER
-========================================= */
+/* Heading */
+
+.center-slider-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.center-slider-heading span {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #667085;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.center-slider-heading h2 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.center-slider-heading p {
+  margin: 16px 0 0;
+  color: #667085;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Slider */
 
 .center-slider {
   position: relative;
-
   width: 100%;
-  height: clamp(26rem, 42vw, 37.5rem);
-
+  height: clamp(360px, 48vw, 570px);
   display: flex;
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 }
 
-/* =========================================
-   BASE CARD
-========================================= */
+/* Cards */
 
 .slider-card {
   position: absolute;
-
+  width: min(68%, 1050px);
+  height: 100%;
   overflow: hidden;
-  background: #111111;
+  border-radius: 18px;
+  background: #e5e7eb;
+  cursor: pointer;
 
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(0) scale(0.8);
   transition:
-    transform var(--slider-duration) var(--slider-easing),
-    opacity 450ms ease;
-
-  backface-visibility: hidden;
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 650ms ease,
+    box-shadow 650ms ease;
 }
-
-/* =========================================
-   CARD IMAGE
-========================================= */
 
 .slider-card img {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   object-position: center;
+  user-select: none;
 }
 
-/* =========================================
-   IMAGE OVERLAY
-========================================= */
+/* Active card */
+
+.slider-card.active {
+  z-index: 3;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.16);
+}
+
+/* Previous card */
+
+.slider-card.left {
+  z-index: 2;
+  opacity: 0.55;
+  pointer-events: auto;
+  transform: translateX(-76%) scale(0.78);
+}
+
+/* Next card */
+
+.slider-card.right {
+  z-index: 2;
+  opacity: 0.55;
+  pointer-events: auto;
+  transform: translateX(76%) scale(0.78);
+}
+
+/* Hidden cards */
+
+.slider-card.hidden {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0) scale(0.7);
+}
+
+/* Image overlay */
 
 .slide-gradient {
   position: absolute;
   inset: 0;
-
-  z-index: 1;
-  pointer-events: none;
-
   background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.35) 35%,
-    transparent 65%
+    90deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.35) 42%,
+    rgba(0, 0, 0, 0.02) 100%
   );
 }
 
-/* =========================================
-   ACTIVE CARD
-========================================= */
-
-.slider-card.active {
-  width: min(70vw, 72rem);
-  height: clamp(25rem, 35vw, 31.25rem);
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 5;
-  opacity: 1;
-
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
-}
-
-/* =========================================
-   LEFT CARD
-========================================= */
-
-.slider-card.left {
-  width: clamp(14rem, 30vw, 28rem);
-  height: clamp(22rem, 35vw, 31.25rem);
-
-  left: 0;
-
-  transform: translateX(-15%) scale(0.82);
-  transform-origin: left center;
-
-  z-index: 2;
-  opacity: 0.65;
-}
-
-.slider-card.left .slide-gradient {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.25)
-  );
-}
-
-/* =========================================
-   RIGHT CARD
-========================================= */
-
-.slider-card.right {
-  width: clamp(14rem, 30vw, 28rem);
-  height: clamp(22rem, 35vw, 31.25rem);
-
-  right: 0;
-
-  transform: translateX(15%) scale(0.82);
-  transform-origin: right center;
-
-  z-index: 2;
-  opacity: 0.65;
-}
-
-.slider-card.right .slide-gradient {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.25)
-  );
-}
-
-/* =========================================
-   HIDDEN CARD
-========================================= */
-
-.slider-card.hidden {
-  transform: scale(0.5);
-
-  opacity: 0;
-  z-index: 0;
-
-  pointer-events: none;
-}
-
-/* =========================================
-   SLIDE CONTENT
-========================================= */
+/* Text content */
 
 .slide-content {
   position: absolute;
+  left: 7%;
+  bottom: 12%;
+  width: min(450px, 75%);
+  color: #fff;
+}
 
-  inset-inline: 0;
-  bottom: 0;
-
-  z-index: 2;
-
-  padding: 2.5rem;
-
-  color: var(--slider-text);
-  pointer-events: none;
+.slide-label {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .slide-content h3 {
-  margin: 0 0 0.625rem;
-
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  line-height: 1.15;
-  font-weight: 600;
+  margin: 0;
+  font-size: clamp(25px, 3.5vw, 43px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -1px;
 }
 
 .slide-content p {
-  max-width: 30rem;
-  margin: 0;
-
-  font-size: 1rem;
-  line-height: 1.5;
-
-  color: rgba(255, 255, 255, 0.88);
+  max-width: 400px;
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-/* SIDE CARD CONTENT */
+/* Controls */
 
-.slider-card.left .slide-content,
-.slider-card.right .slide-content {
-  padding: 1.5rem;
-}
-
-.slider-card.left .slide-content h3,
-.slider-card.right .slide-content h3 {
-  font-size: 1.15rem;
-}
-
-.slider-card.left .slide-content p,
-.slider-card.right .slide-content p {
-  font-size: 0.8rem;
-}
-
-/* HIDDEN CONTENT */
-
-.slider-card.hidden .slide-content {
-  opacity: 0;
-}
-
-/* =========================================
-   SLIDER CONTROLS
-========================================= */
-
-.slider-controls {
+.center-slider-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 24px;
+  margin-top: 32px;
 }
 
-.slider-controls button {
-  display: inline-flex;
+.slider-arrow {
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 3.25rem;
-  height: 3.25rem;
-
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d9dde5;
   border-radius: 50%;
-
-  background: #ffffff;
-  color: #111111;
-
-  font-size: 1.25rem;
+  background: #fff;
+  color: #111827;
+  font-size: 19px;
   cursor: pointer;
-
   transition:
-    background-color 200ms ease,
+    background 200ms ease,
     color 200ms ease,
-    transform 200ms ease;
+    border-color 200ms ease;
 }
 
-.slider-controls button:hover {
-  background: #111111;
-  color: #ffffff;
+.slider-arrow:hover {
+  border-color: #111827;
+  background: #111827;
+  color: #fff;
 }
 
-.slider-controls button:focus-visible {
-  outline: 3px solid #0672ce;
+/* Dots */
+
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #cbd0d9;
+  cursor: pointer;
+  transition:
+    width 250ms ease,
+    background 250ms ease;
+}
+
+.slider-dot.selected {
+  width: 26px;
+  background: #111827;
+}
+
+/* Keyboard focus */
+
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible {
+  outline: 2px solid #2563eb;
   outline-offset: 4px;
 }
 
-/* =========================================
+/* ================================
    TABLET
-========================================= */
+================================ */
 
-@media (max-width: 1000px) {
-  .slider-card.active {
-    width: 76vw;
-    height: 32rem;
-  }
-
-  .slider-card.left,
-  .slider-card.right {
-    width: 23rem;
-    height: 29rem;
-  }
-
-  .slider-card.left {
-    transform: translateX(-25%) scale(0.76);
-  }
-
-  .slider-card.right {
-    transform: translateX(25%) scale(0.76);
-  }
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .center-slider-section {
-    padding-block: 3rem;
+    padding: 75px 0 60px;
   }
 
   .center-slider {
-    height: 27rem;
+    height: 430px;
   }
 
-  .slider-card.active {
-    width: 88vw;
-    height: 25rem;
-  }
-
-  .slider-card.left,
-  .slider-card.right {
-    width: 18.75rem;
-    height: 22.5rem;
-
-    opacity: 0.3;
+  .slider-card {
+    width: 75%;
   }
 
   .slider-card.left {
-    transform: translateX(-55%) scale(0.55);
+    transform: translateX(-68%) scale(0.78);
   }
 
   .slider-card.right {
-    transform: translateX(55%) scale(0.55);
-  }
-
-  .slide-content {
-    padding: 1.5rem;
-  }
-
-  .slide-content h3 {
-    font-size: 1.375rem;
-  }
-
-  .slide-content p {
-    font-size: 0.875rem;
-  }
-
-  .slider-card.left .slide-content,
-  .slider-card.right .slide-content {
-    padding: 1.25rem;
-  }
-
-  .slider-card.left .slide-content h3,
-  .slider-card.right .slide-content h3 {
-    font-size: 1rem;
-  }
-
-  .slider-card.left .slide-content p,
-  .slider-card.right .slide-content p {
-    font-size: 0.7rem;
-  }
-
-  .slider-controls {
-    margin-top: 1.5rem;
-  }
-
-  .slider-controls button {
-    width: 3rem;
-    height: 3rem;
+    transform: translateX(68%) scale(0.78);
   }
 }
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+  .center-slider-section {
+    padding: 60px 0 45px;
+  }
+
+  .center-slider-heading {
+    margin-bottom: 35px;
+  }
+
+  .center-slider-heading h2 {
+    letter-spacing: -0.8px;
+  }
+
+  .center-slider {
+    height: 390px;
+  }
+
+  .slider-card {
+    width: 82%;
+    border-radius: 14px;
+  }
+
+  .slider-card.left {
+    transform: translateX(-76%) scale(0.8);
+    opacity: 0.35;
+  }
+
+  .slider-card.right {
+    transform: translateX(76%) scale(0.8);
+    opacity: 0.35;
+  }
+
+  .slide-content {
+    left: 7%;
+    bottom: 9%;
+    width: 84%;
+  }
+
+  .slide-content h3 {
+    font-size: 29px;
+  }
+
+  .slide-content p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .slide-label {
+    font-size: 9px;
+  }
+}
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+  .center-slider-section {
+    padding: 48px 0 40px;
+  }
+
+  .center-slider-heading {
+    margin-bottom: 28px;
+  }
+
+  .center-slider-heading h2 {
+    font-size: 28px;
+  }
+
+  .center-slider-heading p {
+    font-size: 13px;
+  }
+
+  .center-slider {
+    height: 340px;
+  }
+
+  .slider-card {
+    width: 86%;
+  }
+
+  .slider-card.left {
+    transform: translateX(-78%) scale(0.78);
+  }
+
+  .slider-card.right {
+    transform: translateX(78%) scale(0.78);
+  }
+
+  .slide-content h3 {
+    font-size: 25px;
+  }
+
+  .slide-content p {
+    font-size: 12px;
+  }
+
+  .center-slider-controls {
+    gap: 17px;
+    margin-top: 25px;
+  }
+
+  .slider-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Respect reduced-motion preference */
 
 @media (prefers-reduced-motion: reduce) {
   .slider-card,
-  .slider-controls button {
+  .slider-arrow,
+  .slider-dot {
     transition: none;
   }
 }
